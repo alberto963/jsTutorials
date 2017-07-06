@@ -2,15 +2,15 @@
  * 
  */
 var Employee = (function() {
-	var Employee = function(fullName) {
+	var claxx = function(fullName) {
 		this.fullName = fullName;
 	}
 
-	Employee.log = function() {
+	claxx.log = function() {
 		console.log("Logging...");
 	}
 
-	Employee.prototype = {
+	claxx.prototype = {
 		setFullName : function(fullName) {
 			this.fullName = fullName;
 		},
@@ -19,7 +19,7 @@ var Employee = (function() {
 		}
 	};
 
-	return Employee;
+	return claxx;
 })();
 
 Employee.log(); // logs "Logging..."
