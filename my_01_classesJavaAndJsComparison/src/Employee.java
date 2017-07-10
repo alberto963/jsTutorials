@@ -1,10 +1,8 @@
-
 public class Employee {
 
 	private String fullName;
 
 	public Employee(String fullName) {
-		super();
 		this.fullName = fullName;
 	}
 
@@ -44,5 +42,4 @@ public class Employee {
 		Employee emp3 = new Employee();
 		System.out.println("emp3=" + emp3.getFullName()); // null string, as expected, correct!
 	}
-
 }
