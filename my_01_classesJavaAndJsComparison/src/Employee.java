@@ -21,6 +21,10 @@ public class Employee {
 		System.out.println("Logging...");
 	}
 
+	public int generateId() {
+		return this.fullName.hashCode();
+	}
+	
 	public static void main(String[] args) {
 		Employee.log(); // logs "Logging..."
 

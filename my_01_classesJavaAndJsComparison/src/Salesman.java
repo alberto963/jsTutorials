@@ -22,12 +22,15 @@ public class Salesman extends Employee {
 	public static void main(String[] args) {
 		Salesman.log(); // logs "Logging..."
 
-		Salesman emp1 = new Salesman("John Doe", "pants");
+		Employee emp1 = new Salesman("John Doe", "pants");
 		System.out.println("emp1=" + emp1.getFullName());
 
 		Salesman emp2 = new Salesman();
 		emp2.setFullName("Jane Doe");
 		emp2.setDepartment("shirts");
 		System.out.println("emp2=" + emp2.getFullName());
+		
+		System.out.println("id1=" + emp1.generateId());
+		System.out.println("id2=" + emp2.generateId());
 	}
 }

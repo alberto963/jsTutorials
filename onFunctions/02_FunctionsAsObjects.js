@@ -7,7 +7,7 @@ var Employee = (function() {
 	}
 
 	claxx.log = function() {
-		console.log("Logging...");
+		console.log("Logging..."+ this);
 	}
 
 	claxx.prototype = {
@@ -15,6 +15,8 @@ var Employee = (function() {
 			this.fullName = fullName;
 		},
 		getFullName : function() {
+			console.log("get..."+ this);
+
 			return this.fullName;
 		}
 	};
