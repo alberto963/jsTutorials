@@ -15,7 +15,7 @@ canvas {
 <script>
 
 var myGamePiece;
-var myObstacles = [];
+var crossLines = [];
 var myScore;
 
 function startGame() {
@@ -31,6 +31,7 @@ var myGameArea = {
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.frameNo = 0;
         //this.interval = setInterval(updateGameArea, 20);
+        updateGameArea();
         },
     clear : function() {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -95,22 +96,30 @@ function component(width, height, color, x, y, type) {
 }
 
 function updateGameArea() {
-    var x, height, gap, minHeight, maxHeight, minGap, maxGap;
+    var x, y, width, height;
     
     myGameArea.clear();
-        x = myGameArea.canvas.width;
-        minHeight = 20;
-        maxHeight = 200;
-        height = Math.floor(Math.random()*(maxHeight-minHeight+1)+minHeight);
-        minGap = 50;
-        maxGap = 200;
-        gap = Math.floor(Math.random()*(maxGap-minGap+1)+minGap);
-        myObstacles.push(new component(10, height, "green", x, 0));
-        myObstacles.push(new component(10, x - height - gap, "green", x, height + gap));
+    x = myGameArea.canvas.width;
+    y = myGameArea.canvas.height;
+    width = x;
+    height = y;
+        
+        /*
+         * Vertical lines
+         */
+        crossLines.push(new component(10, height, "black", 100, 0));
+        crossLines.push(new component(10, height, "black", 200, 0));
+        crossLines.push(new component(10, height, "black", 300, 0));
+        
+        /*
+         * Orizontal lines
+         */
+        crossLines.push(new component(width, 10, "black", 0, 100));
+        crossLines.push(new component(width, 10, "black", 0, 200));
+        crossLines.push(new component(width, 10, "black", 0, 300));
 
-        for (i = 0; i < myObstacles.length; i += 1) {
-        myObstacles[i].x += -1;
-        myObstacles[i].update();
+        for (i = 0; i < crossLines.length; i += 1) {
+        crossLines[i].update();
     }
    
 }
