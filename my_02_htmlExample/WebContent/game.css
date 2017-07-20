@@ -1,0 +1,10 @@
+@charset "ISO-8859-1";
+
+canvas {
+	border: 1px solid #000000;
+	background-color: #f1f1f1;
+}
+
+.red {
+	background-color: red;
+}
