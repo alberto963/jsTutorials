@@ -8,7 +8,7 @@ var myScore;
 
 function startGame() {
 
-	gameArea.start();
+	//gameArea.start();
 
 	$('canvas').click(function() {
 		$(this).toggleClass('red');

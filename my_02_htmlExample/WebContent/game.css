@@ -1,5 +1,15 @@
 @charset "ISO-8859-1";
 
+header {
+	background: black;
+	color: white;
+}
+
+footer {
+	background: #aaa;
+	color: white;
+}
+
 canvas {
 	border: 1px solid #000000;
 	background-color: #f1f1f1;
@@ -7,4 +17,27 @@ canvas {
 
 .red {
 	background-color: red;
+}
+
+.flex-container {
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-flow: row wrap;
+	flex-flow: row wrap;
+	text-align: center;
+}
+
+.flex-container>* {
+	padding: 15px;
+	-webkit-flex: 1 100%;
+	flex: 1 100%;
+}
+
+.nav {
+	background: #eee;
+}
+
+.nav ul {
+	list-style-type: none;
+	padding: 0;
 }
