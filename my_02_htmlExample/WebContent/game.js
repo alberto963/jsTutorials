@@ -8,10 +8,15 @@ var myScore;
 
 function startGame() {
 
-	//gameArea.start();
-
+	// gameArea.start();
 	$('canvas').click(function() {
-		$(this).toggleClass('red');
+		$(this).toggleClass(function() {
+			if ($(this).is(".empty")) {
+				return "blue";
+			} else {
+				return "red";
+			}
+		});
 	});
 }
 

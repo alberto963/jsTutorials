@@ -13,10 +13,20 @@ footer {
 canvas {
 	border: 1px solid #000000;
 	background-color: #f1f1f1;
+	width: 100px;
+	height: 100px;
+}
+
+.empty {
+	background-color: #ffff00;
 }
 
 .red {
 	background-color: red;
+}
+
+.blue {
+	background-color: blue;
 }
 
 .flex-container {
