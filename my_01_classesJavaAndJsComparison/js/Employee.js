@@ -1,5 +1,5 @@
 /**
- * 
+ * Employee class defined with the help of the Immediately-Invoked Function Expression (IIFE) mechanism
  */
 var Employee = (function() {
 	var claxx = function(fullName) {
