@@ -73,7 +73,7 @@ f1.g1(); // output 'g1'
 
 /*
  * Can we apply new keyword to f2 function? No, we get TypeError: f2 is not a
- * constructor
+ * constructor.
  * 
  */
 //var f3 = new f2();
