@@ -32,12 +32,14 @@ function Employee(fullName) {
 	}
 }
 
-var emp1 = new Employee("John Doe");
-console.log("emp1=" + emp1.getFullName());
+exports.Employee = Employee;
 
-var emp2 = new Employee();
-emp2.setFullName("Jane Doe");
-console.log("emp2=" + emp2.getFullName());
-
-console.log("max=" + Employee.max);
-Employee.log("logging");
+//var emp1 = new Employee("John Doe");
+//console.log("emp1=" + emp1.getFullName());
+//
+//var emp2 = new Employee();
+//emp2.setFullName("Jane Doe");
+//console.log("emp2=" + emp2.getFullName());
+//
+//console.log("max=" + Employee.max);
+//Employee.log("logging");
