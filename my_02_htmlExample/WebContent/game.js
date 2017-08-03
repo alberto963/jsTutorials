@@ -14,7 +14,6 @@ var game = {
 
 	start : function() {
 
-		var count = 0;
 		$("canvas").each(function() {
 			var $thisTile = $(this);
 			$thisTile.click(function() {
@@ -23,13 +22,13 @@ var game = {
 					return;
 				}
 
-				count++;
+				game.count++;
 				$(this).toggleClass("green");
 
-				console.info("count=" + count)
+				console.info("count=" + game.count)
 
 				var t = $(this).attr('id');
-				count = play(count, t);
+				play(t);
 			});
 		});
 	},
@@ -38,14 +37,14 @@ var game = {
 	}
 }
 
-function play(count, t) {
-	var winConf = check(count, t, ".green");
+function play(t) {
+	var winConf = check(t, ".green");
 	if (winConf.length == 0) {
 		var r = move();
 
-		count++;
+		game.count++;
 
-		var winConf = check(count, r, ".red");
+		var winConf = check(r, ".red");
 
 		if (winConf.length != 0) {
 			/*
@@ -53,8 +52,6 @@ function play(count, t) {
 			 */
 			console.info("RED WINS")
 		}
-
-		return count;
 	}
 
 	/*
@@ -96,10 +93,10 @@ function move() {
 	return r
 }
 
-function check(count, t, player) {
+function check(t, player) {
 	var winConf = [];
 
-	if (count < 5) {
+	if (game.count < 5) {
 		return winConf;
 	}
 
