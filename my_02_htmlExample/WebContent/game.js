@@ -10,6 +10,8 @@ var game = {
 	winConf : [ [ 0, 1, 2 ], [ 3, 4, 5 ], [ 6, 7, 8 ], [ 0, 3, 6 ],
 			[ 1, 4, 7 ], [ 2, 5, 8 ], [ 0, 4, 8 ], [ 2, 4, 6 ] ],
 
+	win : false,
+
 	count : 0,
 
 	start : function() {
@@ -17,6 +19,10 @@ var game = {
 		$("canvas").each(function() {
 			var $thisTile = $(this);
 			$thisTile.click(function() {
+
+				if (game.win) {
+					return;
+				}
 
 				if ($(this).is(".red") || $(this).is(".green")) {
 					return;
@@ -51,13 +57,23 @@ function play(t) {
 			 * Red wins
 			 */
 			console.info("RED WINS")
+
+			showWin(winConf, "red");
+
+			game.win = true;
 		}
+
+		return;
 	}
 
 	/*
 	 * Green wins
 	 */
 	console.info("GREEN WINS")
+
+	showWin(winConf, "green");
+
+	game.win = true;
 }
 
 function move() {
@@ -135,4 +151,17 @@ function check(t, player) {
 	})
 
 	return winConf;
+}
+
+function showWin(winConf, winner) {
+
+	$("canvas").each(function() {
+
+		var t_i = parseInt($(this).attr('id'), 10);
+		if (winConf.indexOf(t_i) != -1) {
+			$(this).toggleClass(winner + "-win");
+			
+			return;
+		}
+	});
 }

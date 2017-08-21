@@ -29,6 +29,37 @@ canvas {
 	background-color: green;
 }
 
+.red-win {
+	animation-name: red-anim;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+}
+
+.green-win {
+	animation-name: green-anim;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+}
+
+@keyframes red-anim {
+	from {background-color: red;
+}
+
+to {
+	background-color: yellow;
+}
+
+}
+
+@keyframes green-anim {
+	from {background-color: green;
+}
+
+to {
+	background-color: yellow;
+}
+
+}
 .flex-container {
 	display: -webkit-flex;
 	display: flex;
