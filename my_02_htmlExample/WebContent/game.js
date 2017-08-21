@@ -96,9 +96,57 @@ function move() {
 	});
 
 	/*
-	 * Random move
+	 * Check if green is winning
+	 */
+	var r = -1;
+	emptyTiles.some(function(e) {
+		r = $(e).attr('id');
+		$(e).toggleClass("green");
+		var winConf = check(r, ".green");
+		if (winConf.length != 0) {
+			$(e).toggleClass("green");
+
+			return true;
+		}
+
+		$(e).toggleClass("green");
+
+		r = -1;
+		return false;
+	})
+
+	/*
+	 * Random move if not winning configuration
 	 */
 	var move = emptyTiles[Math.floor(Math.random() * emptyTiles.length)];
+
+	if (r != -1) {
+		move = $("#" + r);
+	} else {
+
+		/*
+		 * Check if red is winning
+		 */
+		var r = -1;
+		emptyTiles.some(function(e) {
+			r = $(e).attr('id');
+			$(e).toggleClass("red");
+
+			var winConf = check(r, ".red");
+			if (winConf.length != 0) {
+				$(e).toggleClass("red");
+
+				return true;
+			}
+
+			$(e).toggleClass("red");
+			r = -1;
+
+			return false;
+		})
+
+		move = (r != -1) ? $("#" + r) : move;
+	}
 
 	console.info("move=" + move);
 
@@ -112,9 +160,9 @@ function move() {
 function check(t, player) {
 	var winConf = [];
 
-	if (game.count < 5) {
-		return winConf;
-	}
+	// if (game.count < 5) {
+	// return winConf;
+	// }
 
 	var possConf = [ [] ];
 	var t_i = parseInt(t, 10);
@@ -160,7 +208,7 @@ function showWin(winConf, winner) {
 		var t_i = parseInt($(this).attr('id'), 10);
 		if (winConf.indexOf(t_i) != -1) {
 			$(this).toggleClass(winner + "-win");
-			
+
 			return;
 		}
 	});
