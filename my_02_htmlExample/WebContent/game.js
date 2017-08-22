@@ -94,59 +94,21 @@ function move() {
 
 		emptyTiles.push($(this));
 	});
-
+	
+	/*
+	 * Check if red is winning
+	 */
+	var r = checkMove(emptyTiles, "red");
+	
 	/*
 	 * Check if green is winning
 	 */
-	var r = -1;
-	emptyTiles.some(function(e) {
-		r = $(e).attr('id');
-		$(e).toggleClass("green");
-		var winConf = check(r, ".green");
-		if (winConf.length != 0) {
-			$(e).toggleClass("green");
-
-			return true;
-		}
-
-		$(e).toggleClass("green");
-
-		r = -1;
-		return false;
-	})
+	var g = checkMove(emptyTiles, "green");
 
 	/*
 	 * Random move if not winning configuration
 	 */
-	var move = emptyTiles[Math.floor(Math.random() * emptyTiles.length)];
-
-	if (r != -1) {
-		move = $("#" + r);
-	} else {
-
-		/*
-		 * Check if red is winning
-		 */
-		var r = -1;
-		emptyTiles.some(function(e) {
-			r = $(e).attr('id');
-			$(e).toggleClass("red");
-
-			var winConf = check(r, ".red");
-			if (winConf.length != 0) {
-				$(e).toggleClass("red");
-
-				return true;
-			}
-
-			$(e).toggleClass("red");
-			r = -1;
-
-			return false;
-		})
-
-		move = (r != -1) ? $("#" + r) : move;
-	}
+	var move = (r != -1) ? $("#" + r) : (g != -1) ? $("#" + g) : emptyTiles[Math.floor(Math.random() * emptyTiles.length)] ;
 
 	console.info("move=" + move);
 
@@ -155,6 +117,27 @@ function move() {
 	var r = $(move).attr('id');
 
 	return r
+	
+	function checkMove(emptyTiles, player){
+		var r = -1;
+		emptyTiles.some(function(e) {
+			r = $(e).attr('id');
+			$(e).toggleClass(player);
+			var winConf = check(r, "."+player);
+			if (winConf.length != 0) {
+				$(e).toggleClass(player);
+
+				return true;
+			}
+
+			$(e).toggleClass(player);
+
+			r = -1;
+			return false;
+		})
+
+		return r;
+	}
 }
 
 function check(t, player) {
