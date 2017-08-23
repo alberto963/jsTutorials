@@ -94,12 +94,12 @@ function move() {
 
 		emptyTiles.push($(this));
 	});
-	
+
 	/*
 	 * Check if red is winning
 	 */
 	var r = checkMove(emptyTiles, "red");
-	
+
 	/*
 	 * Check if green is winning
 	 */
@@ -108,7 +108,8 @@ function move() {
 	/*
 	 * Random move if not winning configuration
 	 */
-	var move = (r != -1) ? $("#" + r) : (g != -1) ? $("#" + g) : emptyTiles[Math.floor(Math.random() * emptyTiles.length)] ;
+	var move = (r != -1) ? $("#" + r) : (g != -1) ? $("#" + g)
+			: emptyTiles[Math.floor(Math.random() * emptyTiles.length)];
 
 	console.info("move=" + move);
 
@@ -117,13 +118,13 @@ function move() {
 	var r = $(move).attr('id');
 
 	return r
-	
-	function checkMove(emptyTiles, player){
+
+	function checkMove(emptyTiles, player) {
 		var r = -1;
 		emptyTiles.some(function(e) {
 			r = $(e).attr('id');
 			$(e).toggleClass(player);
-			var winConf = check(r, "."+player);
+			var winConf = check(r, "." + player);
 			if (winConf.length != 0) {
 				$(e).toggleClass(player);
 
@@ -142,10 +143,6 @@ function move() {
 
 function check(t, player) {
 	var winConf = [];
-
-	// if (game.count < 5) {
-	// return winConf;
-	// }
 
 	var possConf = [ [] ];
 	var t_i = parseInt(t, 10);
