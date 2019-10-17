@@ -28,8 +28,8 @@ const MyButton = props => {
 }
 
 MyButton.propTypes = {
-  children: PropTypes.node,
-  classes: PropTypes.object.isRequired,
+  onClick: PropTypes.func,
+  buttonContent: PropTypes.string.isRequired,
   className: PropTypes.string,
 }
 
