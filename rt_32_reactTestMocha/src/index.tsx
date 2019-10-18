@@ -2,4 +2,6 @@ import React from 'react'
 import { render } from 'react-dom'
 import ComponentUnderTest from './ComponentUnderTest'
 
-render(<ComponentUnderTest dimensions={['0', '1', '2', '3', '4']}/>, document.getElementById('root'))
+const D = 1000
+const dimensions = [...new Array<string>(D)].map((r, x) => '' + x)
+render(<ComponentUnderTest dimensions={dimensions} init={D - 1}/>, document.getElementById('root'))

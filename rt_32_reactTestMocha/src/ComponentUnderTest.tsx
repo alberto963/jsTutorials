@@ -40,7 +40,8 @@ type State<T> = {
 }
 
 interface IOwnProps {
-  dimensions: string[]
+  dimensions: string[],
+  init: number
 }
 
 const ComponentUnderTest = (props: IOwnProps) => {
@@ -50,7 +51,7 @@ const ComponentUnderTest = (props: IOwnProps) => {
   const [state, setState] = useState<State<E>>({
     data: [],
     loading: true,
-    dimension: 2
+    dimension: props.init
   })
 
   console.info(dt(t0) + 'Entering ComponentUnderTest state=', state)
@@ -85,10 +86,10 @@ const ComponentUnderTest = (props: IOwnProps) => {
     console.info(dt(t0) + 'updateDimension state=', state)
   }, [state.loading, state.dimension])
 
-  const updatedata = useCallback(() => {
+  const updatedata = () => {
     setState({...state, loading: true, data: [...state.data] })
     console.info(dt(t0) + 'updatedata state=', state)
-  }, [state.dimension])
+  }
 
   const classes = useStyles(props)
 
@@ -121,7 +122,7 @@ const ComponentUnderTest = (props: IOwnProps) => {
       </Box>
       <Button
         className={classes.button}
-        onClick={updatedata}
+        onClick={useCallback(updatedata, [state.dimension])}
         buttonContent={'UPDATE DATA'}
       />
     </div>
