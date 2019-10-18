@@ -74,19 +74,19 @@ const ComponentUnderTest = (props: IOwnProps) => {
 
     console.info(dt(t0) + 'useEffect OUT state=', state)
 
-  }, [state.loading])
+  })
 
   const updateDimension = useCallback(increment => () => {
     const newDimension = state.dimension + increment
-    const newState: State<E> = {...state,
+    const newState: State<E> = {...state, loading: true, data: [...state.data],
       dimension: newDimension < 0 ? props.dimensions.length - 1 : newDimension % props.dimensions.length}
     console.info(dt(t0) + 'updateDimension newState=', newState)
     setState(newState)
     console.info(dt(t0) + 'updateDimension state=', state)
-  }, [state.dimension])
+  }, [state.loading, state.dimension])
 
   const updatedata = useCallback(() => {
-    setState({...state, loading: true})
+    setState({...state, loading: true, data: [...state.data] })
     console.info(dt(t0) + 'updatedata state=', state)
   }, [state.dimension])
 
