@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Button from './Button'
 import Box from '@material-ui/core/Box'
 import { XYPlot, XAxis, YAxis, VerticalGridLines, HorizontalGridLines, MarkSeries } from 'react-vis'
-import {t, dt, generateData, Data} from './Utils'
+import {t, dt, generateData, IFunc, Data} from './Utils'
 
 const DELAY = 1000
 
@@ -19,10 +19,18 @@ const useStyles = makeStyles(theme => ({
 }))
 
 // tslint:disable-next-line: interface-over-type-literal
-type E = {
-  x: number,
-  y: number
+type E0 = number
+interface IE1<T> {
+  v0: T
+  v1: T
 }
+type E1 = IE1<boolean>
+
+type E = E0
+
+const f: IFunc<E> = {x: v => v, y: x => x}
+
+const f1: IFunc<E1> = {x: v => ({v0: !v, v1: !!v}), y: v => ({v0: !!v, v1: !v})}
 
 // tslint:disable-next-line: interface-over-type-literal
 type State<T> = {
@@ -39,7 +47,7 @@ const ComponentUnderTest = (props: IOwnProps) => {
 
   const t0 = t()
 
-  const [state, setState] = useState({
+  const [state, setState] = useState<State<E>>({
     data: [],
     loading: true,
     dimension: 2
@@ -55,10 +63,12 @@ const ComponentUnderTest = (props: IOwnProps) => {
 
       setTimeout(() => {
         console.info(dt(t0) + 'timeout expired state=', state)
-        const newState = {...state, loading: false, data: generateData(t0, state.dimension, {x: v => v, y: x => x})}
+        const newState: State<E> = {...state, loading: false, data: generateData<E>(t0, state.dimension, f)}
         console.info(dt(t0) + 'setting state with new data newState=', newState)
         setState(newState)
         console.info(dt(t0) + 'after set state with new data state is stil previous state: state=', state)
+        const justForTest: Data<E1> = generateData<E1>(t0, state.dimension, f1)
+        console.info(dt(t0) + 'Just to see a bit more complex type in ts justForTest=', justForTest)
       }, DELAY)
     }
 
@@ -68,7 +78,7 @@ const ComponentUnderTest = (props: IOwnProps) => {
 
   const updateDimension = useCallback(increment => () => {
     const newDimension = state.dimension + increment
-    const newState = {...state,
+    const newState: State<E> = {...state,
       dimension: newDimension < 0 ? props.dimensions.length - 1 : newDimension % props.dimensions.length}
     console.info(dt(t0) + 'updateDimension newState=', newState)
     setState(newState)
