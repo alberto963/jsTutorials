@@ -47,6 +47,16 @@ const ComponentUnderTest = (props: IOwnProps) => {
 
   const t0 = t()
 
+  const reducer = (status: State<E>, action) => {
+    switch (action.type) {
+      case 'updateDimension': {
+        const newDimension = status.dimension + action.increment
+        return {...status,
+          dimension: newDimension < 0 ? props.dimensions.length - 1 : newDimension % props.dimensions.length}
+      }
+    }
+  }
+
   const [state, setState] = useState<State<E>>({
     data: [],
     loading: true,
@@ -92,24 +102,24 @@ const ComponentUnderTest = (props: IOwnProps) => {
 
   const classes = useStyles(props)
 
-  console.info(dt(t0) + 'ComponentUnderTest OUT ***RENDERING*** state=', state)
+  console.info(dt(t0) + 'ComponentUnderTest OUT state=', state)
 
   return (
-    <div className='centered-and-flexed'>
-      <div className='centered-and-flexed-controls'>
-        <Button
-          className={classes.button}
-          onClick={updateDimension(-1)}
-          buttonContent={'PREV'}
-        />
-        <div> {`ARRAY DIMENSION: ${props.dimensions[state.dimension]}`} </div>
-        <Button
+  <div className='centered-and-flexed'>
+    <div className='centered-and-flexed-controls'>
+      <Button
+        className={classes.button}
+        onClick={updateDimension(-1)}
+        buttonContent={'PREV'}
+      />
+      <div> {`ARRAY DIMENSION: ${props.dimensions[state.dimension]}`} </div>
+      <Button
           className={classes.button}
           onClick={updateDimension(+1)}
           buttonContent={'NEXT'}
-        />
-      </div>
-      <Box className={classes.box} border={1} bgcolor='primary.main'>
+      />
+    </div>
+    <Box className={classes.box} border={1} bgcolor='primary.main'>
         {state.loading && <div className={classes.button}>Loading...</div>}
         {!state.loading && <XYPlot width={300} height={300}>
           <VerticalGridLines />
@@ -118,14 +128,13 @@ const ComponentUnderTest = (props: IOwnProps) => {
           <YAxis />
           <MarkSeries data={state.data} />
         </XYPlot>}
-      </Box>
-      <Button
+    </Box>
+    <Button
         className={classes.button}
         onClick={updatedata}
         buttonContent={'UPDATE DATA'}
-      />
-    </div>
-  )
+    />
+  </div>)
 }
 
 export default ComponentUnderTest
