@@ -16,7 +16,9 @@
     "chai": "~4.2.0",
     "eslint": "^4.19.1",
     "eslint-plugin-react-hooks": "^2.0.1",
-    "mocha": "~6.0.2",
+    "mocha": "latest",
+    "enzyme": "latest",
+    "enzyme-adapter-react-16": "latest",
     "react-scripts-ts": "latest",
     "ts-node": "latest",
     "typescript": "latest"
