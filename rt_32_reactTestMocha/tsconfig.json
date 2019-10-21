@@ -13,10 +13,12 @@
     ]
   },
   "include": [
-    "src"
+    "src",
+    "./test/*.ts"
   ],
   "exclude": [
     "src/ComponentUnderTestWithReducer.tsx"
  ],
   "compileOnSave": false
 }
+

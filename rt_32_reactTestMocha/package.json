@@ -12,18 +12,19 @@
   },
   "devDependencies": {
     "@types/chai": "^4.1.7",
-    "@types/mocha": "^5.2.6",
-    "typescript": "^3.6.4",
-    "react-scripts-ts": "latest",
-    "mocha": "~6.0.2",
+    "@types/mocha": "^5.2.7",
     "chai": "~4.2.0",
     "eslint": "^4.19.1",
-    "eslint-plugin-react-hooks": "^2.0.1"
+    "eslint-plugin-react-hooks": "^2.0.1",
+    "mocha": "~6.0.2",
+    "react-scripts-ts": "latest",
+    "ts-node": "^5.0.1",
+    "typescript": "^3.6.4"
   },
   "scripts": {
     "start": "react-scripts-ts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "mocha -r ts-node/register test/**/*.specs.ts",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
