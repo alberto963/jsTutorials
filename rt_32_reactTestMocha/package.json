@@ -18,8 +18,8 @@
     "eslint-plugin-react-hooks": "^2.0.1",
     "mocha": "~6.0.2",
     "react-scripts-ts": "latest",
-    "ts-node": "^5.0.1",
-    "typescript": "^3.6.4"
+    "ts-node": "latest",
+    "typescript": "latest"
   },
   "scripts": {
     "start": "react-scripts-ts start",
