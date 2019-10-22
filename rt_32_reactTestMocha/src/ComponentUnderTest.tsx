@@ -36,11 +36,11 @@ const f1: IFunc<E1> = {x: v => ({v0: !v, v1: !!v}), y: v => ({v0: !!v, v1: !v})}
 type State<T> = {
   data: Data<T>,
   loading: boolean,
-  dimension: number
+  init: number
 }
 
 interface IOwnProps {
-  dimensions: string[],
+  max: number,
   init: number
 }
 
@@ -51,7 +51,7 @@ const ComponentUnderTest = (props: IOwnProps) => {
   const [state, setState] = useState<State<E>>({
     data: [],
     loading: true,
-    dimension: props.init
+    init: props.init
   })
 
   console.info(dt(t0) + 'Entering ComponentUnderTest state=', state)
@@ -64,27 +64,26 @@ const ComponentUnderTest = (props: IOwnProps) => {
 
       setTimeout(() => {
         console.info(dt(t0) + 'timeout expired state=', state)
-        const newState: State<E> = {...state, loading: false, data: generateData<E>(t0, state.dimension, f)}
+        const newState: State<E> = {...state, loading: false, data: generateData<E>(t0, state.init, f)}
         console.info(dt(t0) + 'setting state with new data newState=', newState)
         setState(newState)
         console.info(dt(t0) + 'after set state with new data state is stil previous state: state=', state)
-        const justForTest: Data<E1> = generateData<E1>(t0, state.dimension, f1)
+        const justForTest: Data<E1> = generateData<E1>(t0, state.init, f1)
         console.info(dt(t0) + 'Just to see a bit more complex type in ts justForTest=', justForTest)
       }, DELAY)
     }
 
     console.info(dt(t0) + 'useEffect OUT state=', state)
-
   })
 
-  const updateDimension = useCallback(increment => () => {
-    const newDimension = state.dimension + increment
+  const updateInit = useCallback(increment => () => {
+    const newInit = state.init + increment
     const newState: State<E> = {...state, loading: true, data: [...state.data],
-      dimension: newDimension < 0 ? props.dimensions.length - 1 : newDimension % props.dimensions.length}
-    console.info(dt(t0) + 'updateDimension newState=', newState)
+      init: newInit < 0 ? props.max - 1 : newInit % props.max}
+    console.info(dt(t0) + 'updateInit newState=', newState)
     setState(newState)
-    console.info(dt(t0) + 'updateDimension state=', state)
-  }, [state.loading, state.dimension])
+    console.info(dt(t0) + 'updateInit state=', state)
+  }, [state.loading, state.init])
 
   const updatedata = () => {
     setState({...state, loading: true, data: [...state.data] })
@@ -100,13 +99,13 @@ const ComponentUnderTest = (props: IOwnProps) => {
       <div className='centered-and-flexed-controls'>
         <Button
           className={classes.button}
-          onClick={updateDimension(-1)}
+          onClick={updateInit(-1)}
           buttonContent={'PREV'}
         />
-        <div> {`ARRAY DIMENSION: ${props.dimensions[state.dimension]}`} </div>
+        <div> {`ARRAY DIMENSION: ${state.init}`} </div>
         <Button
           className={classes.button}
-          onClick={updateDimension(+1)}
+          onClick={updateInit(+1)}
           buttonContent={'NEXT'}
         />
       </div>
@@ -122,7 +121,7 @@ const ComponentUnderTest = (props: IOwnProps) => {
       </Box>
       <Button
         className={classes.button}
-        onClick={useCallback(updatedata, [state.dimension])}
+        onClick={useCallback(updatedata, [state.init])}
         buttonContent={'UPDATE DATA'}
       />
     </div>
