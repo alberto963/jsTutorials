@@ -41,7 +41,7 @@ type State<T> = {
 
 interface IOwnProps {
   max: number,
-  init: number
+  init?: number
 }
 
 const ComponentUnderTest = (props: IOwnProps) => {
@@ -51,7 +51,7 @@ const ComponentUnderTest = (props: IOwnProps) => {
   const [state, setState] = useState<State<E>>({
     data: [],
     loading: true,
-    init: props.init
+    init: 0 || props.init
   })
 
   console.info(dt(t0) + 'Entering ComponentUnderTest state=', state)

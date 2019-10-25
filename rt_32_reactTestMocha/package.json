@@ -11,13 +11,22 @@
     "react-vis": "latest"
   },
   "devDependencies": {
-    "@types/chai": "^4.1.7",
-    "@types/mocha": "^5.2.7",
+    "@types/chai": "latest",
+    "@types/mocha": "latest",
+    "@types/enzyme": "latest",
+    "@types/enzyme-adapter-react-16": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "@types/sinon": "latest",
+    "awesome-typescript-loader": "latest",
     "chai": "~4.2.0",
     "eslint": "^4.19.1",
     "eslint-plugin-react-hooks": "^2.0.1",
+    "jsdom": "latest",
+    "jsdom-global": "latest",
     "mocha": "latest",
     "enzyme": "latest",
+    "sinon": "latest",
     "enzyme-adapter-react-16": "latest",
     "react-scripts-ts": "latest",
     "ts-node": "latest",
@@ -25,8 +34,8 @@
   },
   "scripts": {
     "start": "react-scripts-ts start",
+    "test": "mocha -r ts-node/register -r babel-register -r jsdom-global/register -r source-map-support/register test/**/*.specs.ts",
     "build": "react-scripts build",
-    "test": "mocha -r ts-node/register test/**/Utils.specs.ts",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

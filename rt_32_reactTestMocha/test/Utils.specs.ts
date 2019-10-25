@@ -2,7 +2,7 @@ import { expect } from 'chai'
 import { t, generateData, IFunc } from '../src/Utils'
 
 // if you used the '@types/mocha' method to install mocha type definitions, uncomment the following line
-// import 'mocha'
+import 'mocha'
 
 const r00 = []
 const r10 = [{x: true, y: false}]
