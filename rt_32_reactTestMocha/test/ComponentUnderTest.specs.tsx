@@ -9,18 +9,18 @@ import 'mocha'
 import * as Adapter from 'enzyme-adapter-react-16'
 
 import ComponentUnderTest from '../src/ComponentUnderTest'
-import { NotFound } from '../src/NotFound'
+import NotFound from '../src/NotFound'
 
 describe('<ComponentUnderTest />', () => {
 
   Enzyme.configure({ adapter: new Adapter() })
 
   it('renders the correct text when no init level is given', () => {
-    const spy = Sinon.spy(NotFound.prototype, 'render')
+    // const spy = Sinon.spy(ComponentUnderTest.prototype, 'render')
 
-    // tslint:disable-next-line: no-angle-bracket-type-assertion
-    const cut = Enzyme.shallow( <NotFound />)
+    const cut = Enzyme.shallow(<NotFound />)
 
+    console.info(cut)
     // expect(cut.find('.greeting').text()).toEqual('ComponentUnderTest Daniel!')
   })
 

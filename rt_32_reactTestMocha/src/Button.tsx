@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import clsx from 'clsx'
 import { withStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
@@ -25,12 +24,6 @@ const MyButton = props => {
       {children || buttonContent || 'My Button'}
     </Button>
   )
-}
-
-MyButton.propTypes = {
-  onClick: PropTypes.func,
-  buttonContent: PropTypes.string.isRequired,
-  className: PropTypes.string,
 }
 
 export default withStyles(styles)(MyButton)

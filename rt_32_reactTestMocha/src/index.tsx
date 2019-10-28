@@ -1,6 +1,6 @@
 import React from 'react'
-import { render } from 'react-dom'
 import ComponentUnderTest from './ComponentUnderTest'
+import * as ReactDOM from 'react-dom'
 
 const D = 1000
-render(<ComponentUnderTest max={D} init={D - 1}/>, document.getElementById('root'))
+ReactDOM.render(<ComponentUnderTest max={D} init={D - 1}/>, document.getElementById('root'))
