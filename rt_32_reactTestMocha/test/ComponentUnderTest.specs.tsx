@@ -37,12 +37,12 @@ describe('Testing component <NotFound />', () => {
 describe('Testing component <ComponentUnderTest />', () => {
 
   it('renders the correct text when no init level is given', () => {
-    // const spy = Sinon.spy(ComponentUnderTest.prototype, 'render')
+    const spy = Sinon.spy(ComponentUnderTest.prototype, 'ComponentUnderTest')
 
-    const cut = Enzyme.shallow(<ComponentUnderTest max={5} />)
+    const wrapper = Enzyme.shallow(<ComponentUnderTest max={5} />)
 
-    console.info(cut)
-    expect(cut.find('.greeting').text()).equal('ComponentUnderTest Daniel!')
+    console.info('FIND: ', wrapper.find('.MuiButton-label'))
+    // expect(cut.find('.MuiButton-label').text()).equal('ComponentUnderTest Daniel!')
   })
 
 // it('renders the correct text with an explicit enthusiasm of 1', () => {

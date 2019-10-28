@@ -5,3 +5,7 @@ ref: https://journal.artfuldev.com/write-tests-for-typescript-projects-with-moch
 ref: https://journal.artfuldev.com/unit-testing-node-applications-with-typescript-using-mocha-and-chai-384ef05f32b2 (newer)
 
 
+ref: https://itnext.io/testing-components-built-using-react-hooks-with-jest-enzyme-edb87d703756 (with jest)
+
+look for similar with mocha
+
