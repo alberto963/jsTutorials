@@ -1,27 +1,20 @@
 {
-  // "compilerOptions": {
-  //   "sourceMap": true,
-  //   "module": "commonjs",
-  //   "esModuleInterop": true,
-  //   "resolveJsonModule": true,
-  //   "experimentalDecorators": true,
-  //   "target": "es6",
-  //   "jsx": "react",
-  //   "lib": [ "dom", "es7" ]
-  // },
   "compilerOptions": {
     "sourceMap": true,
     "module": "commonjs",
-
     "experimentalDecorators": true,
     "target": "es6",
-    "lib": [ "es7", "dom" ],
+    "jsx": "react",
+    "lib": [ "dom", "es7" ],
+
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+
     "noImplicitAny": false,
     "removeComments": true,
     "preserveConstEnums": true,
-    "allowSyntheticDefaultImports": true,
-    "jsx": "react"
-},
+    "allowSyntheticDefaultImports": true
+  },
   "awesomeTypescriptLoaderOptions": {
     "errorsAsWarnings": true,
     "useBabel": true,

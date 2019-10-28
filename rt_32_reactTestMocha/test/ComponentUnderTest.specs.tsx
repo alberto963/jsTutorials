@@ -1,12 +1,13 @@
 /* tslint:disable */
 
 import 'jsdom-global/register'
+import * as React from 'react'
 import { expect } from 'chai'
 import * as Enzyme from 'enzyme'
 import * as Sinon from 'sinon'
-import 'mocha'
+import Adapter from 'enzyme-adapter-react-16'
 
-import * as Adapter from 'enzyme-adapter-react-16'
+import 'mocha'
 
 import ComponentUnderTest from '../src/ComponentUnderTest'
 import NotFound from '../src/NotFound'
