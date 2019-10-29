@@ -9,3 +9,5 @@ ref: https://itnext.io/testing-components-built-using-react-hooks-with-jest-enzy
 
 look for similar with mocha
 
+Loading DOM environment in Enzyme (this seems to be the problem, when calling Enzyme.mount no dom is actually available)
+This post may help: https://github.com/airbnb/enzyme/issues/1558

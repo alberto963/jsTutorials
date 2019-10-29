@@ -8,6 +8,7 @@
     "react": "^16.3.1",
     "react-dom": "16.8.6",
     "clsx": "latest",
+    "nanoid": "latest",
     "react-vis": "latest"
   },
   "devDependencies": {
@@ -18,6 +19,7 @@
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "@types/sinon": "latest",
+    "@types/nanoid": "latest",
     "awesome-typescript-loader": "latest",
     "chai": "~4.2.0",
     "eslint": "^4.19.1",
@@ -25,6 +27,7 @@
     "jsdom": "latest",
     "jsdom-global": "latest",
     "mocha": "latest",
+    "mocha-jsdom": "latest",
     "enzyme": "latest",
     "sinon": "latest",
     "enzyme-adapter-react-16": "latest",
@@ -35,7 +38,7 @@
   },
   "scripts": {
     "start": "react-scripts-ts start",
-    "test": "mocha -r ts-node/register -r babel-register -r jsdom-global/register -r source-map-support/register -r ignore-styles --watch-extensions ts --recursive test/**/*.specs.tsx",
+    "test": "mocha -r ts-node/register -r babel-register -r jsdom-global/register -r source-map-support/register -r ignore-styles -r setup.js --watch-extensions ts --recursive test/**/*CUT.specs.tsx",
     "build": "react-scripts-ts build",
     "eject": "react-scripts eject"
   },

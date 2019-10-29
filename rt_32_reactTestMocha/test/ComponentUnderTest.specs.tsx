@@ -8,6 +8,7 @@ import * as Sinon from 'sinon'
 import Adapter from 'enzyme-adapter-react-16'
 
 import 'mocha'
+import jsdom from 'mocha-jsdom'
 
 import ComponentUnderTest from '../src/ComponentUnderTest'
 import NotFound from '../src/NotFound'
@@ -36,14 +37,30 @@ describe('Testing component <NotFound />', () => {
 
 describe('Testing component <ComponentUnderTest />', () => {
 
-  it('renders the correct text when no init level is given', () => {
-    const spy = Sinon.spy(ComponentUnderTest.prototype, 'ComponentUnderTest')
-
-    const wrapper = Enzyme.shallow(<ComponentUnderTest max={5} />)
-
-    console.info('FIND: ', wrapper.find('.MuiButton-label'))
-    // expect(cut.find('.MuiButton-label').text()).equal('ComponentUnderTest Daniel!')
+  jsdom()
+  it("renders", () => {
+    Enzyme.mount(<ComponentUnderTest max={5} />)
   })
+
+  it("initially displays 3 buttons", () => {
+    const wrapper = Enzyme.mount(<ComponentUnderTest max={5} />)
+    console.info('FIND: ', wrapper.find('Button'))
+
+    // expect(wrapper.find("Button")).toHaveLength(3)
+    // expect(
+    //   wrapper.find("input[type='checkbox']").map(el => el.getDOMNode().checked)
+    // ).toEqual([true, false, false])
+  })
+
+  // it('renders the correct text when no init level is given', () => {
+   
+  //   // const spy = Sinon.spy(ComponentUnderTest.prototype, 'ComponentUnderTest')
+
+  //   // const wrapper = Enzyme.shallow(<ComponentUnderTest max={5} />)
+
+  //   // console.info('FIND: ', wrapper.find('.MuiButton-label'))
+  //   // expect(cut.find('.MuiButton-label').text()).equal('ComponentUnderTest Daniel!')
+  // })
 
 // it('renders the correct text with an explicit enthusiasm of 1', () => {
 //   const cut = Enzyme.shallow(<ComponentUnderTest max={5} init={1} />)
