@@ -1,15 +1,15 @@
 /* tslint:disable */
 
-import 'jsdom-global/register'
-import * as React from 'react'
-import { expect } from 'chai'
-import * as Enzyme from 'enzyme'
-import * as Sinon from 'sinon'
-import Adapter from 'enzyme-adapter-react-16'
+const { register } = require('jsdom-global')
+const { React } = require('react')
+const { expect } = require('chai')
+const { Enzyme } = require('enzyme')
+const { Sinon } = require('sinon')
+const { Adapter } = require('enzyme-adapter-react-16')
 
-import 'mocha'
+require ('mocha')
 
-import { TodoList} from '../src/ExampleCUT'
+const { TodoList} = require('../src/ExampleCUT')
 
 // var jsdom = require('mocha-jsdom')
 

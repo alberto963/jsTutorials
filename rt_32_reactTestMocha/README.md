@@ -11,3 +11,6 @@ look for similar with mocha
 
 Loading DOM environment in Enzyme (this seems to be the problem, when calling Enzyme.mount no dom is actually available)
 This post may help: https://github.com/airbnb/enzyme/issues/1558
+
+This seems to be what we need:
+ref: https://www.robinwieruch.de/react-testing-mocha-chai-enzyme-sinon

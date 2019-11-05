@@ -20,6 +20,8 @@
     "@types/react-dom": "latest",
     "@types/sinon": "latest",
     "@types/nanoid": "latest",
+    "@babel/register": "latest",
+    "@babel/core": "latest",
     "awesome-typescript-loader": "latest",
     "chai": "~4.2.0",
     "eslint": "^4.19.1",
@@ -38,7 +40,8 @@
   },
   "scripts": {
     "start": "react-scripts-ts start",
-    "test": "mocha -r ts-node/register -r babel-register -r jsdom-global/register -r source-map-support/register -r ignore-styles -r setup.js --watch-extensions ts --recursive test/**/*CUT.specs.tsx",
+    "test": "mocha -r @babel/register -r ts-node/register -r ignore-styles -r setup.js --recursive test/**/ExampleCUT.specs.jsx",
+    "test:unit": "mocha -r @babel/register -r ./test/helpers.js -r ./test/dom.js 'src/**/*.spec.js'",
     "build": "react-scripts-ts build",
     "eject": "react-scripts eject"
   },
