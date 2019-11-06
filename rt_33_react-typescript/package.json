@@ -1,0 +1,28 @@
+{
+  "name": "react-typescript",
+  "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/basarat/react-typescript.git"
+  },
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack -p",
+    "clean": "rm -rf ./node_modules package-lock.json && npm i",
+    "start": "webpack-dev-server -d --content-base ./public",
+    "upgrade": "npm i typescript@latest react@latest react-dom@latest @types/react@latest @types/react-dom@latest webpack@latest webpack-dev-server@latest webpack-cli@latest ts-loader@latest clean-webpack-plugin@latest html-webpack-plugin@latest --save-exact"
+  },
+  "dependencies": {
+    "@types/react": "16.8.23",
+    "@types/react-dom": "16.8.4",
+    "clean-webpack-plugin": "3.0.0",
+    "html-webpack-plugin": "3.2.0",
+    "react": "16.8.6",
+    "react-dom": "16.8.6",
+    "ts-loader": "6.0.4",
+    "typescript": "3.5.3",
+    "webpack": "4.35.3",
+    "webpack-cli": "3.3.6",
+    "webpack-dev-server": "3.7.2"
+  }
+}
