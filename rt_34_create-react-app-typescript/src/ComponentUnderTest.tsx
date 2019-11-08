@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Button from './Button'
 import Box from '@material-ui/core/Box'
 import { XYPlot, XAxis, YAxis, VerticalGridLines, HorizontalGridLines, MarkSeries } from 'react-vis'
-import {t, dt, generateData, IFunc, Data} from './Utils'
+import {t, generateData, IFunc, Data} from './Utils'
 
 const DELAY = 1000
 
@@ -19,20 +19,9 @@ const useStyles = makeStyles((theme: { spacing: (arg0: number) => void }) => ({
 }))
 
 // tslint:disable-next-line: interface-over-type-literal
-type E0 = number
-
-interface IE1<T> {
-  v0: T
-  v1: T
-}
-type E1 = IE1<boolean>
-
-type E = E0
-// type E = E1
+type E = number
 
 const f: IFunc<E> = {x: v => v, y: x => x}
-
-const f1: IFunc<E1> = {x: v => ({v0: !v, v1: !!v}), y: v => ({v0: !!v, v1: !v})}
 
 // tslint:disable-next-line: interface-over-type-literal
 type State<T> = {
@@ -56,45 +45,44 @@ const ComponentUnderTest = (props: IOwnProps) => {
     init: 0 || props.init as number
   })
 
-  console.info(dt(t0) + 'Entering ComponentUnderTest state=', state)
+  // console.info(dt(t0) + 'Entering ComponentUnderTest state=', state)
 
   useEffect(() => {
-    console.info(dt(t0) + 'useEffect IN state=', state)
+    // console.info(dt(t0) + 'useEffect IN state=', state)
 
     if (state.loading) {
-      console.info(dt(t0) + 'useEffect setting timeout state=', state)
+      // console.info(dt(t0) + 'useEffect setting timeout state=', state)
 
       setTimeout(() => {
-        console.info(dt(t0) + 'timeout expired state=', state)
+        // console.info(dt(t0) + 'timeout expired state=', state)
         const newState: State<E> = {...state, loading: false, data: generateData<E>(t0, state.init, f)}
-        console.info(dt(t0) + 'setting state with new data newState=', newState)
+        // console.info(dt(t0) + 'setting state with new data newState=', newState)
         setState(newState)
-        console.info(dt(t0) + 'after set state with new data state is stil previous state: state=', state)
-        const justForTest: Data<E1> = generateData<E1>(t0, state.init, f1)
-        console.info(dt(t0) + 'Just to see a bit more complex type in ts justForTest=', justForTest)
+        // console.info(dt(t0) + 'after set state with new data state is stil previous state: state=', state)
       }, DELAY)
     }
 
-    console.info(dt(t0) + 'useEffect OUT state=', state)
+    // console.info(dt(t0) + 'useEffect OUT state=', state)
   })
 
-  const updateInit = useCallback(increment => () => {
+const updateInit = useCallback(increment => () => {
     const newInit = state.init + increment
     const newState: State<E> = {...state, loading: true, data: [...state.data],
       init: newInit < 0 ? props.max - 1 : newInit % props.max}
-    console.info(dt(t0) + 'updateInit newState=', newState)
+    // console.info(dt(t0) + 'updateInit newState=', newState)
     setState(newState)
-    console.info(dt(t0) + 'updateInit state=', state)
-  }, [state.loading, state.init])
+    // console.info(dt(t0) + 'updateInit state=', state)
+// eslint-disable-next-line
+}, [state.loading, state.init])
 
   const updatedata = () => {
     setState({...state, loading: true, data: [...state.data] })
-    console.info(dt(t0) + 'updatedata state=', state)
+    // console.info(dt(t0) + 'updatedata state=', state)
   }
 
   const classes = useStyles(props)
 
-  console.info(dt(t0) + 'ComponentUnderTest OUT ***RENDERING*** state=', state)
+  // console.info(dt(t0) + 'ComponentUnderTest OUT ***RENDERING*** state=', state)
 
   return (
     <div className='centered-and-flexed'>
