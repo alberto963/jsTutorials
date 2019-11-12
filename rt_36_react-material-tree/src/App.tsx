@@ -7,8 +7,8 @@ import Tree from './Tree'
 const SimpleContainer: React.FC = () => 
     <React.Fragment>
       <CssBaseline />
-      <Container maxWidth='sm' style={{margin: '100px', padding: '25px', border: 'solid'}}>
-        <Typography component={Tree} variant={'button'} />
+      <Container maxWidth='sm' style={{margin: '100px', padding: '25px'}} >
+        <Typography component={Tree} variant={'button'}  />
       </Container>
     </React.Fragment>
 

@@ -15,6 +15,7 @@ import LocalOfferIcon from '@material-ui/icons/LocalOffer'
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown'
 import ArrowRightIcon from '@material-ui/icons/ArrowRight'
 import { SvgIconProps } from '@material-ui/core/SvgIcon'
+import Checkbox, { CheckboxProps } from '@material-ui/core/Checkbox'
 
 declare module 'csstype' {
   interface Properties {
@@ -78,21 +79,39 @@ const useTreeItemStyles = makeStyles((theme: Theme) =>
 
 const StyledTreeItem = (props: StyledTreeItemProps) => {
   const classes = useTreeItemStyles()
-  const { labelText, labelIcon: LabelIcon, labelInfo, color, bgColor, ...other } = props
+  const { nodeId, labelText, labelIcon: LabelIcon, labelInfo, color, bgColor, ...other } = props
+
+  const checkBoxClicked = (event: any, checked: boolean, id: any) => {
+    // setOrgStructureElement(checked, id, selected, orgStructure)
+    console.info(checked, id)
+  }
+
+  // className={classes.globalFilterCheckbox}
+
+  const label = <div className={classes.labelRoot}>
+    <div style={{ display: 'flex', alignItems: 'center' }}>
+      <Checkbox
+        id={`checkbox-${nodeId}`}
+        checked={true}
+        onChange={(event: any, checked: boolean) => checkBoxClicked(event, checked, nodeId)}
+        onClick={e => e.stopPropagation()}
+        color='primary'
+      />
+      <Typography variant='caption'>{nodeId}</Typography>
+    </div>
+    <LabelIcon color='inherit' className={classes.labelIcon} />
+    <Typography variant='body2' className={classes.labelText}>
+      {labelText}
+    </Typography>
+    <Typography variant='caption' color='inherit'>
+      {labelInfo}
+    </Typography>
+  </div>
 
   return (
     <TreeItem
-      label={
-        <div className={classes.labelRoot}>
-          <LabelIcon color='inherit' className={classes.labelIcon} />
-          <Typography variant='body2' className={classes.labelText}>
-            {labelText}
-          </Typography>
-          <Typography variant='caption' color='inherit'>
-            {labelInfo}
-          </Typography>
-        </div>
-      }
+      label={label}
+      nodeId={nodeId}
       style={{
         '--tree-view-color': color,
         '--tree-view-bg-color': bgColor,
@@ -131,7 +150,16 @@ const Tree: React.FC = () => {
       defaultEndIcon={<div style={{ width: 24 }} />}
     >
       <StyledTreeItem nodeId='1' labelText='All Mail' labelIcon={MailIcon} />
-      <StyledTreeItem nodeId='2' labelText='Trash' labelIcon={DeleteIcon} />
+      <StyledTreeItem nodeId='2' labelText='Trash' labelIcon={DeleteIcon} >
+        <StyledTreeItem
+            nodeId='9'
+            labelText='New my'
+            labelIcon={SupervisorAccountIcon}
+            labelInfo='My Info'
+            color='#1a73e8'
+            bgColor='#e8f0fe'
+          />
+      </StyledTreeItem>
       <StyledTreeItem nodeId='3' labelText='Categories' labelIcon={Label}>
         <StyledTreeItem
           nodeId='5'
@@ -166,7 +194,16 @@ const Tree: React.FC = () => {
           bgColor='#e6f4ea'
         />
       </StyledTreeItem>
-      <StyledTreeItem nodeId='4' labelText='History' labelIcon={Label} />
+      <StyledTreeItem nodeId='4' labelText='History' labelIcon={Label} >
+      <StyledTreeItem
+            nodeId='10'
+            labelText='New my2'
+            labelIcon={SupervisorAccountIcon}
+            labelInfo='My Info2'
+            color='#1a73e8'
+            bgColor='#e8f0fe'
+          />
+      </StyledTreeItem>
     </TreeView>
   )
 }
