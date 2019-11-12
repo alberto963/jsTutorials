@@ -5,13 +5,7 @@ import { Theme } from '@material-ui/core/styles/createMuiTheme'
 import TreeView from '@material-ui/lab/TreeView'
 import TreeItem from '@material-ui/lab/TreeItem'
 import { TreeItemProps } from '@material-ui/lab/TreeItem/TreeItem'
-import MailIcon from '@material-ui/icons/Mail'
-import DeleteIcon from '@material-ui/icons/Delete'
-import Label from '@material-ui/icons/Label'
-import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount'
-import InfoIcon from '@material-ui/icons/Info'
-import ForumIcon from '@material-ui/icons/Forum'
-import LocalOfferIcon from '@material-ui/icons/LocalOffer'
+
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown'
 import ArrowRightIcon from '@material-ui/icons/ArrowRight'
 import { SvgIconProps } from '@material-ui/core/SvgIcon'
@@ -24,7 +18,7 @@ declare module 'csstype' {
   }
 }
 
-type StyledTreeItemProps = TreeItemProps & {
+type StyledTreeItemDataProps = {
   bgColor?: string
   color?: string
   labelIcon: React.ElementType<SvgIconProps>
@@ -32,7 +26,12 @@ type StyledTreeItemProps = TreeItemProps & {
   labelText: string
   defaultChecked?: boolean
   disabled?: boolean
-}
+  children?: Array<StyledTreeItemDataProps>
+ }
+
+type StyledTreeItemProps = TreeItemProps & StyledTreeItemDataProps
+
+export type TreeData = Array<StyledTreeItemDataProps>
 
 const useTreeItemStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -84,7 +83,6 @@ const StyledTreeItem = (props: StyledTreeItemProps) => {
   const { nodeId, labelText, labelIcon: LabelIcon, labelInfo, color, bgColor, defaultChecked, disabled, ...other } = props
 
   const checkBoxClicked = (event: any, checked: boolean, id: any) => {
-    // setOrgStructureElement(checked, id, selected, orgStructure)
     console.info(checked, id)
   }
 
@@ -141,75 +139,61 @@ const useStyles = makeStyles(
   }),
 )
 
-const Tree: React.FC = () => {
+const handleExpanded = (nodeId: string, nodeExpanded: boolean) => {
+
+  console.info('Node expanded ', nodeExpanded, nodeId)
+
+  // cache expanded nodes
+  if (nodeExpanded) {
+    // addOpenOrgStructurePanel(nodeId)
+  } else {
+    // removeOpenOrgStructurePanel(nodeId)
+  }
+}
+
+const Tree: React.FC<{ treeData: TreeData }>  = (props) => {
   const classes = useStyles()
+
+const treeData2Data = (it: StyledTreeItemDataProps, i: number) => {
+
+  if (it.children) {
+    return (
+    <StyledTreeItem
+      nodeId={i as unknown as string}
+      labelText={it.labelText}
+      labelIcon={it.labelIcon}
+      labelInfo= {it.labelInfo}
+      color={it.color}
+      bgColor={it.bgColor}
+      disabled={it.disabled}
+    >
+      {it.children.map(treeData2Data)}
+   </StyledTreeItem>)
+  }
+
+  return  <StyledTreeItem
+        nodeId={i as unknown as string}
+        labelText={it.labelText}
+        labelIcon={it.labelIcon}
+        labelInfo= {it.labelInfo}
+        color={it.color}
+        bgColor={it.bgColor}
+        disabled={it.disabled}
+      />
+}
+
+  const data = props.treeData.map(treeData2Data)
 
   return (
     <TreeView
       className={classes.root}
       defaultExpanded={['0']}
+      onNodeToggle={(nodeId: string, nodeExpanded: boolean) => handleExpanded(nodeId, nodeExpanded)}
       defaultCollapseIcon={<ArrowDropDownIcon />}
       defaultExpandIcon={<ArrowRightIcon />}
       defaultEndIcon={<div style={{ width: 24 }} />}
     >
-      <StyledTreeItem nodeId='1' labelText='All Mail' labelIcon={MailIcon} />
-      <StyledTreeItem nodeId='2' labelText='Trash' labelIcon={DeleteIcon} defaultChecked={true}>
-        <StyledTreeItem
-            nodeId='9'
-            labelText='New my'
-            labelIcon={SupervisorAccountIcon}
-            labelInfo='My Info'
-            color='#1a73e8'
-            bgColor='#e8f0fe'
-          />
-      </StyledTreeItem>
-      <StyledTreeItem nodeId='3' labelText='Categories' labelIcon={Label}>
-        <StyledTreeItem
-          nodeId='5'
-          labelText='Social'
-          labelIcon={SupervisorAccountIcon}
-          labelInfo='90'
-          color='#1a73e8'
-          bgColor='#e8f0fe'
-          defaultChecked={true}
-          disabled={true}
-        />
-        <StyledTreeItem
-          nodeId='6'
-          labelText='Updates'
-          labelIcon={InfoIcon}
-          labelInfo='2,294'
-          color='#e3742f'
-          bgColor='#fcefe3'
-          disabled={true}
-        />
-        <StyledTreeItem
-          nodeId='7'
-          labelText='Forums'
-          labelIcon={ForumIcon}
-          labelInfo='3,566'
-          color='#a250f5'
-          bgColor='#f3e8fd'
-        />
-        <StyledTreeItem
-          nodeId='8'
-          labelText='Promotions'
-          labelIcon={LocalOfferIcon}
-          labelInfo='733'
-          color='#3c8039'
-          bgColor='#e6f4ea'
-        />
-      </StyledTreeItem>
-      <StyledTreeItem nodeId='4' labelText='History' labelIcon={Label} >
-      <StyledTreeItem
-            nodeId='10'
-            labelText='New my2'
-            labelIcon={SupervisorAccountIcon}
-            labelInfo='My Info2'
-            color='#1a73e8'
-            bgColor='#e8f0fe'
-          />
-      </StyledTreeItem>
+      {data}
     </TreeView>
   )
 }
