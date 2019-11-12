@@ -15,7 +15,7 @@ import LocalOfferIcon from '@material-ui/icons/LocalOffer'
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown'
 import ArrowRightIcon from '@material-ui/icons/ArrowRight'
 import { SvgIconProps } from '@material-ui/core/SvgIcon'
-import Checkbox, { CheckboxProps } from '@material-ui/core/Checkbox'
+import Checkbox  from './Checkbox'
 
 declare module 'csstype' {
   interface Properties {
@@ -30,6 +30,8 @@ type StyledTreeItemProps = TreeItemProps & {
   labelIcon: React.ElementType<SvgIconProps>
   labelInfo?: string
   labelText: string
+  defaultChecked?: boolean
+  disabled?: boolean
 }
 
 const useTreeItemStyles = makeStyles((theme: Theme) =>
@@ -79,7 +81,7 @@ const useTreeItemStyles = makeStyles((theme: Theme) =>
 
 const StyledTreeItem = (props: StyledTreeItemProps) => {
   const classes = useTreeItemStyles()
-  const { nodeId, labelText, labelIcon: LabelIcon, labelInfo, color, bgColor, ...other } = props
+  const { nodeId, labelText, labelIcon: LabelIcon, labelInfo, color, bgColor, defaultChecked, disabled, ...other } = props
 
   const checkBoxClicked = (event: any, checked: boolean, id: any) => {
     // setOrgStructureElement(checked, id, selected, orgStructure)
@@ -92,10 +94,11 @@ const StyledTreeItem = (props: StyledTreeItemProps) => {
     <div style={{ display: 'flex', alignItems: 'center' }}>
       <Checkbox
         id={`checkbox-${nodeId}`}
-        checked={true}
         onChange={(event: any, checked: boolean) => checkBoxClicked(event, checked, nodeId)}
-        onClick={e => e.stopPropagation()}
+        onClick={(e: any) => e.stopPropagation()}
         color='primary'
+        defaultChecked={defaultChecked}
+        disabled={disabled}
       />
       <Typography variant='caption'>{nodeId}</Typography>
     </div>
@@ -150,7 +153,7 @@ const Tree: React.FC = () => {
       defaultEndIcon={<div style={{ width: 24 }} />}
     >
       <StyledTreeItem nodeId='1' labelText='All Mail' labelIcon={MailIcon} />
-      <StyledTreeItem nodeId='2' labelText='Trash' labelIcon={DeleteIcon} >
+      <StyledTreeItem nodeId='2' labelText='Trash' labelIcon={DeleteIcon} defaultChecked={true}>
         <StyledTreeItem
             nodeId='9'
             labelText='New my'
@@ -168,6 +171,8 @@ const Tree: React.FC = () => {
           labelInfo='90'
           color='#1a73e8'
           bgColor='#e8f0fe'
+          defaultChecked={true}
+          disabled={true}
         />
         <StyledTreeItem
           nodeId='6'
@@ -176,6 +181,7 @@ const Tree: React.FC = () => {
           labelInfo='2,294'
           color='#e3742f'
           bgColor='#fcefe3'
+          disabled={true}
         />
         <StyledTreeItem
           nodeId='7'
