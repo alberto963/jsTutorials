@@ -154,24 +154,26 @@ const handleExpanded = (nodeId: string, nodeExpanded: boolean) => {
 const Tree: React.FC<{ treeData: TreeData }>  = (props) => {
   const classes = useStyles()
 
-const treeData2Data = (it: StyledTreeItemDataProps, i: number) => {
+  const treeData2Data = (it: StyledTreeItemDataProps, i: number) => {
 
   if (it.children) {
-    return (
-    <StyledTreeItem
-      nodeId={i as unknown as string}
-      labelText={it.labelText}
-      labelIcon={it.labelIcon}
-      labelInfo= {it.labelInfo}
-      color={it.color}
-      bgColor={it.bgColor}
-      disabled={it.disabled}
-    >
-      {it.children.map(treeData2Data)}
-   </StyledTreeItem>)
-  }
+    const ch = it.children.map(treeData2Data)
 
-  return  <StyledTreeItem
+    return (
+      <StyledTreeItem
+        nodeId={i as unknown as string}
+        labelText={it.labelText}
+        labelIcon={it.labelIcon}
+        labelInfo= {it.labelInfo}
+        color={it.color}
+        bgColor={it.bgColor}
+        disabled={it.disabled}
+      >
+        {ch}
+      </StyledTreeItem>
+  )}
+
+  return <StyledTreeItem
         nodeId={i as unknown as string}
         labelText={it.labelText}
         labelIcon={it.labelIcon}
