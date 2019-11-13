@@ -14,16 +14,16 @@ import LocalOfferIcon from '@material-ui/icons/LocalOffer'
 
 const treeData: TreeData = [
   {labelText: 'All Mail', labelIcon: MailIcon},
-  {labelText: 'Trash', labelIcon: DeleteIcon, defaultChecked: true, children: [
+  {labelText: 'Trash', labelIcon: DeleteIcon, defaultChecked: true, items: [
     {labelText: 'New My', labelIcon: SupervisorAccountIcon, labelInfo: 'My Info', color: '#1a73e8', bgColor: '#e8f0fe'}
   ]},
-  {labelText: 'Categories', labelIcon: Label, color: '#1a73e8', bgColor: '#e8f0fe', children: [
+  {labelText: 'Categories', labelIcon: Label, color: '#1a73e8', bgColor: '#e8f0fe', items: [
     {labelText: 'Social', labelIcon: SupervisorAccountIcon, labelInfo: '90', color: '#1a73e8', bgColor: '#e8f0fe', defaultChecked: true, disabled: true},
     {labelText: 'Updates', labelIcon: InfoIcon, labelInfo: '2,2000', color: '#e3742f', bgColor: '#e8f0fe'},
     {labelText: 'Forums', labelIcon: ForumIcon, labelInfo: '3,330', color: '#a250f5', bgColor: '#f3e8fd'},
     {labelText: 'Promotions', labelIcon: LocalOfferIcon, labelInfo: '733', color: '#3c8039', bgColor: '#e6f4ea'}
   ]},
-  {labelText: 'History', labelIcon: Label, defaultChecked: true, children: [
+  {labelText: 'History', labelIcon: Label, defaultChecked: true, items: [
     {labelText: 'New My2', labelIcon: SupervisorAccountIcon, labelInfo: 'My Info2', color: '#1a73e8', bgColor: '#e8f0fe'}
   ]},
 ]

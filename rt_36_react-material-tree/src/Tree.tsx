@@ -26,7 +26,7 @@ type StyledTreeItemDataProps = {
   labelText: string
   defaultChecked?: boolean
   disabled?: boolean
-  children?: Array<StyledTreeItemDataProps>
+  items?: Array<StyledTreeItemDataProps>
  }
 
 type StyledTreeItemProps = TreeItemProps & StyledTreeItemDataProps
@@ -151,15 +151,10 @@ const handleExpanded = (nodeId: string, nodeExpanded: boolean) => {
   }
 }
 
-const Tree: React.FC<{ treeData: TreeData }>  = (props) => {
+const Tree: React.FC<{ treeData: TreeData }> = ({treeData}) => {
   const classes = useStyles()
 
-  const treeData2Data = (it: StyledTreeItemDataProps, i: number) => {
-
-  if (it.children) {
-    const ch = it.children.map(treeData2Data)
-
-    return (
+  const treeData2Data = (it: StyledTreeItemDataProps, i: number): JSX.Element =>
       <StyledTreeItem
         nodeId={i as unknown as string}
         labelText={it.labelText}
@@ -168,24 +163,9 @@ const Tree: React.FC<{ treeData: TreeData }>  = (props) => {
         color={it.color}
         bgColor={it.bgColor}
         disabled={it.disabled}
-      >
-        {ch}
-      </StyledTreeItem>
-  )}
-
-  return <StyledTreeItem
-        nodeId={i as unknown as string}
-        labelText={it.labelText}
-        labelIcon={it.labelIcon}
-        labelInfo= {it.labelInfo}
-        color={it.color}
-        bgColor={it.bgColor}
-        disabled={it.disabled}
+        children={ (it.items) ? it.items.map(treeData2Data) : undefined}
       />
-}
-
-  const data = props.treeData.map(treeData2Data)
-
+       
   return (
     <TreeView
       className={classes.root}
@@ -195,7 +175,7 @@ const Tree: React.FC<{ treeData: TreeData }>  = (props) => {
       defaultExpandIcon={<ArrowRightIcon />}
       defaultEndIcon={<div style={{ width: 24 }} />}
     >
-      {data}
+      {treeData.map(treeData2Data)}
     </TreeView>
   )
 }
