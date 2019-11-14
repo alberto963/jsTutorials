@@ -163,6 +163,7 @@ const Tree: React.FC<{ treeData: TreeData }> = ({treeData}) => {
         color={it.color}
         bgColor={it.bgColor}
         disabled={it.disabled}
+        defaultChecked={it.defaultChecked}
         children={ (it.items) ? it.items.map(treeData2Data) : undefined}
       />
        
