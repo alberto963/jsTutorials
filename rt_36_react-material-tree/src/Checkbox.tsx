@@ -64,7 +64,6 @@ const StyledCheckbox = (props: CheckboxProps) => {
   );
 }
 
-
 export const ExampleCheckbox: React.FC = () => <div>
     <StyledCheckbox />
     <StyledCheckbox defaultChecked />

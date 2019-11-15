@@ -23,13 +23,22 @@ type StyledTreeItemDataProps = {
   color?: string
   labelIcon: React.ElementType<SvgIconProps>
   labelInfo?: string
-  labelText: string
+  labelText?: string
   defaultChecked?: boolean
   disabled?: boolean
   items?: Array<StyledTreeItemDataProps>
  }
 
-type StyledTreeItemProps = TreeItemProps & StyledTreeItemDataProps
+ type TreeViewState = {
+  nodeId: string
+ }
+
+ type StyledTreeItemInnerProps = {
+  checkState: Array<TreeViewState>
+  checkBoxClicked: Function
+ }
+
+type StyledTreeItemProps = TreeItemProps & StyledTreeItemDataProps & StyledTreeItemInnerProps
 
 export type TreeData = Array<StyledTreeItemDataProps>
 
@@ -80,11 +89,7 @@ const useTreeItemStyles = makeStyles((theme: Theme) =>
 
 const StyledTreeItem = (props: StyledTreeItemProps) => {
   const classes = useTreeItemStyles()
-  const { nodeId, labelText, labelIcon: LabelIcon, labelInfo, color, bgColor, defaultChecked, disabled, ...other } = props
-
-  const checkBoxClicked = (event: any, checked: boolean, id: any) => {
-    console.info(checked, id)
-  }
+  const { nodeId, labelText, labelIcon: LabelIcon, labelInfo, color, bgColor, defaultChecked, disabled, checkBoxClicked, checkState, ...other } = props
 
   // className={classes.globalFilterCheckbox}
 
@@ -139,24 +144,30 @@ const useStyles = makeStyles(
   }),
 )
 
-const handleExpanded = (nodeId: string, nodeExpanded: boolean) => {
-
-  console.info('Node expanded ', nodeExpanded, nodeId)
-
-  // cache expanded nodes
-  if (nodeExpanded) {
-    // addOpenOrgStructurePanel(nodeId)
-  } else {
-    // removeOpenOrgStructurePanel(nodeId)
-  }
+interface IDictionary<T> {
+  [key: string]: T
 }
 
 const Tree: React.FC<{ treeData: TreeData }> = ({treeData}) => {
+
+  const defaultChecked: Array<TreeViewState> = []
+  const [checkState, setCheckState] = React.useState(defaultChecked)
+  const checkBoxClicked = (event: any, checked: boolean, nodeId: string): void => {
+    setCheckState(checked ? [...checkState, {nodeId}] : checkState.filter(e => e.nodeId !== nodeId))
+    // console.info('checkBoxClicked ', checkState, checked, nodeId)
+  }
+
+  const handleExpanded = (nodeId: string, nodeExpanded: boolean) => {
+    console.info('Node expanded ', nodeId, nodeExpanded, checkState)
+  }
+
   const classes = useStyles()
 
   const treeData2Data = (it: StyledTreeItemDataProps, i: number): JSX.Element =>
       <StyledTreeItem
         nodeId={i as unknown as string}
+        checkState={checkState}
+        checkBoxClicked={checkBoxClicked}
         labelText={it.labelText}
         labelIcon={it.labelIcon}
         labelInfo= {it.labelInfo}
@@ -164,7 +175,7 @@ const Tree: React.FC<{ treeData: TreeData }> = ({treeData}) => {
         bgColor={it.bgColor}
         disabled={it.disabled}
         defaultChecked={it.defaultChecked}
-        children={ (it.items) ? it.items.map(treeData2Data) : undefined}
+        children={(it.items) ? it.items.map(treeData2Data) : undefined}
       />
        
   return (
