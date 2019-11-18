@@ -29,12 +29,14 @@ type StyledTreeItemDataProps = {
   items?: Array<StyledTreeItemDataProps>
  }
 
- type TreeViewState = {
-  nodeId: string
- }
+ interface IDictionary<T> {
+  [key: string]: T
+}
+
+ type TreeViewState = IDictionary<boolean>
 
  type StyledTreeItemInnerProps = {
-  checkState: Array<TreeViewState>
+  checkState: TreeViewState
   checkBoxClicked: Function
  }
 
@@ -144,16 +146,15 @@ const useStyles = makeStyles(
   }),
 )
 
-interface IDictionary<T> {
-  [key: string]: T
-}
-
 const Tree: React.FC<{ treeData: TreeData }> = ({treeData}) => {
 
-  const defaultChecked: Array<TreeViewState> = []
+  const defaultChecked: TreeViewState = {}
+  const treeData2InitialState = (it: StyledTreeItemDataProps, i: number): TreeViewState => {
+    return {}
+  }
   const [checkState, setCheckState] = React.useState(defaultChecked)
   const checkBoxClicked = (event: any, checked: boolean, nodeId: string): void => {
-    setCheckState(checked ? [...checkState, {nodeId}] : checkState.filter(e => e.nodeId !== nodeId))
+    setCheckState( {...checkState, [nodeId]: checked} )
     // console.info('checkBoxClicked ', checkState, checked, nodeId)
   }
 
@@ -174,7 +175,7 @@ const Tree: React.FC<{ treeData: TreeData }> = ({treeData}) => {
         color={it.color}
         bgColor={it.bgColor}
         disabled={it.disabled}
-        defaultChecked={it.defaultChecked}
+        defaultChecked={checkState[i as unknown as string]}
         children={(it.items) ? it.items.map(treeData2Data) : undefined}
       />
        
