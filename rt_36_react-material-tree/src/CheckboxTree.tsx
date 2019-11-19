@@ -6,7 +6,7 @@ import ArrowRightIcon from '@material-ui/icons/ArrowRight'
 import StyledTreeItem  from './CheckboxTreeItem'
 import { CheckboxTreeItemDataProps }  from './CheckboxTreeItem'
 
- interface IDictionary<T> {
+interface IDictionary<T> {
   [key: string]: T
 }
 
