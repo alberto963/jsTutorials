@@ -48,7 +48,7 @@ const CheckboxTree: React.FC<CheckboxTreeData> = ({struct}) => {
   }
 
   const handleExpanded = (nodeId: string, nodeExpanded: boolean) => {
-    console.info('Node expanded ', nodeId, nodeExpanded, checkState)
+    // console.info('Node expanded ', nodeId, nodeExpanded, checkState)
   }
 
   const classes = useStyles()
