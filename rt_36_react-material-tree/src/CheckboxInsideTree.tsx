@@ -48,7 +48,7 @@ const useStyles = makeStyles({
 });
 
 // Inspired by blueprintjs
-const StyledCheckbox: React.FC<CheckboxProps> = props => {
+const CheckboxInsideTree: React.FC<CheckboxProps> = props => {
   const classes = useStyles();
 
   return (
@@ -65,9 +65,9 @@ const StyledCheckbox: React.FC<CheckboxProps> = props => {
 }
 
 export const ExampleCheckbox: React.FC = () => <div>
-    <StyledCheckbox />
-    <StyledCheckbox defaultChecked />
-    <StyledCheckbox disabled /> 
+    <CheckboxInsideTree />
+    <CheckboxInsideTree defaultChecked />
+    <CheckboxInsideTree disabled /> 
   </div>
 
-export default StyledCheckbox
+export default CheckboxInsideTree

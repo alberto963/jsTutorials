@@ -2,8 +2,8 @@ import React from 'react'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
-import Tree, { TreeData } from './Tree'
-import { ExampleCheckbox } from './Checkbox'
+import CheckboxTree, { CheckboxTreeData } from './CheckboxTree'
+import { ExampleCheckbox } from './CheckboxInsideTree'
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount'
 import Label from '@material-ui/icons/Label'
 import MailIcon from '@material-ui/icons/Mail'
@@ -12,7 +12,7 @@ import InfoIcon from '@material-ui/icons/Info'
 import ForumIcon from '@material-ui/icons/Forum'
 import LocalOfferIcon from '@material-ui/icons/LocalOffer'
 
-const treeData: TreeData = { struct: [
+const treeData: CheckboxTreeData = { struct: [
   {labelText: 'All Mail', labelIcon: MailIcon, id: "0"},
   {labelText: 'Trash', labelIcon: DeleteIcon, defaultChecked: true, id: "1", defaultExpanded: true, items: [
     {labelText: 'New My', labelIcon: SupervisorAccountIcon, labelInfo: 'My Info', color: '#1a73e8', bgColor: '#e8f0fe', defaultChecked: true, id: "2"}
@@ -33,7 +33,7 @@ const SimpleContainer: React.FC = () =>
       <CssBaseline />
       <Container maxWidth='sm' style={{margin: '100px', padding: '25px'}} >
         <Typography component='div' variant={'button'}>
-          {<Tree struct={treeData.struct} />}
+          {<CheckboxTree struct={treeData.struct} />}
         </Typography>
       </Container>
       <Container maxWidth='sm' style={{margin: '100px', padding: '25px'}} >

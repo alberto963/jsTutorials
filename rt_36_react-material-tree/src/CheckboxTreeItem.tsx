@@ -5,8 +5,8 @@ import { Theme } from '@material-ui/core/styles/createMuiTheme'
 import TreeItem from '@material-ui/lab/TreeItem'
 import { TreeItemProps } from '@material-ui/lab/TreeItem/TreeItem'
 import { SvgIconProps } from '@material-ui/core/SvgIcon'
-import { TreeViewState }  from './Tree'
-import Checkbox  from './Checkbox'
+import { CheckboxTreeViewState }  from './CheckboxTree'
+import Checkbox  from './CheckboxInsideTree'
 
 declare module 'csstype' {
   interface Properties {
@@ -15,7 +15,7 @@ declare module 'csstype' {
   }
 }
 
-export type StyledTreeItemDataProps = {
+export type CheckboxTreeItemDataProps = {
   id: string
   bgColor?: string
   color?: string
@@ -25,15 +25,15 @@ export type StyledTreeItemDataProps = {
   defaultChecked?: boolean
   disabled?: boolean
   defaultExpanded? : boolean
-  items?: Array<StyledTreeItemDataProps>
+  items?: Array<CheckboxTreeItemDataProps>
  }
 
- export type StyledTreeItemInnerProps = {
-  checkState: TreeViewState
+ export type CheckboxTreeItemInnerProps = {
+  checkState: CheckboxTreeViewState
   checkBoxClicked: Function
  }
 
-export type StyledTreeItemProps = TreeItemProps & StyledTreeItemDataProps & StyledTreeItemInnerProps
+export type CheckboxTreeItemProps = TreeItemProps & CheckboxTreeItemDataProps & CheckboxTreeItemInnerProps
 
 const useTreeItemStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -80,7 +80,7 @@ const useTreeItemStyles = makeStyles((theme: Theme) =>
   }),
 )
 
-const StyledTreeItem: React.FC<StyledTreeItemProps> =
+const CheckboxTreeItem: React.FC<CheckboxTreeItemProps> =
   ({nodeId, labelText, labelIcon: LabelIcon, labelInfo, color, bgColor, defaultChecked, disabled, checkBoxClicked, checkState, ...other}) => {
   const classes = useTreeItemStyles()
 
@@ -127,4 +127,4 @@ const StyledTreeItem: React.FC<StyledTreeItemProps> =
   )
 }
 
-export default StyledTreeItem
+export default CheckboxTreeItem
