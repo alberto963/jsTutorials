@@ -19,6 +19,7 @@ declare module 'csstype' {
 }
 
 type StyledTreeItemDataProps = {
+  id: string
   bgColor?: string
   color?: string
   labelIcon: React.ElementType<SvgIconProps>
@@ -26,6 +27,7 @@ type StyledTreeItemDataProps = {
   labelText?: string
   defaultChecked?: boolean
   disabled?: boolean
+  defaultExpanded? : boolean
   items?: Array<StyledTreeItemDataProps>
  }
 
@@ -148,23 +150,23 @@ const useStyles = makeStyles(
 
 const Tree: React.FC<{ treeData: TreeData }> = ({treeData}) => {
 
-  const treeData2InitialState = (it: StyledTreeItemDataProps, i: number): TreeViewState => {
-    const nodeId = i as unknown as string
-    const initial: TreeViewState = {[nodeId]: it.defaultChecked ? it.defaultChecked : false}
-    // return it.items ? it.items.map(treeData2InitialState) : initial
-    return initial
+  const treeData2InitialExpand = (it: StyledTreeItemDataProps): Array<string> => {
+    const initial: Array<string> = it.defaultExpanded ? [it.id] : []
+    return it.items ? it.items.map(treeData2InitialExpand).reduce((a: Array<string>, e: Array<string>) => [...a, ...e], initial) : initial
   }
 
-  // const map2 = (treeData: TreeData) => treeData.map(treeData2InitialState)
-  // const map3 = map2(treeData)
-
-  // const td2is = (treeData: TreeData) => treeData.map(treeData2InitialState).reduce((a: TreeViewState, e: TreeViewState) => ({...a, ...e}), {})
+  const treeData2InitialState = (it: StyledTreeItemDataProps): TreeViewState => {
+    const nodeId = it.id
+    const initial: TreeViewState = {[nodeId]: it.defaultChecked ? it.defaultChecked : false}
+    return it.items ? it.items.map(treeData2InitialState).reduce((a: TreeViewState, e: TreeViewState) => ({...a, ...e}), initial) : initial
+  }
 
   const [checkState, setCheckState] = React.useState(() =>
       treeData.map(treeData2InitialState).reduce((a: TreeViewState, e: TreeViewState) => ({...a, ...e}), {}))
+    
   const checkBoxClicked = (event: any, checked: boolean, nodeId: string): void => {
     setCheckState( {...checkState, [nodeId]: checked} )
-    console.info('checkBoxClicked ', checkState, checked, nodeId)
+    // console.info('checkBoxClicked ', checkState, checked, nodeId)
   }
 
   const handleExpanded = (nodeId: string, nodeExpanded: boolean) => {
@@ -174,10 +176,12 @@ const Tree: React.FC<{ treeData: TreeData }> = ({treeData}) => {
   const classes = useStyles()
 
   const treeData2Data = (c: number) => (it: StyledTreeItemDataProps, i: number): JSX.Element => {
-    c = c+1
-    console.info(c)
-   return    <StyledTreeItem
-        nodeId={c as unknown as string}
+  //  c = c + 1
+  //  console.info(it.labelText, c, it.id )
+   return  <StyledTreeItem
+        nodeId={it.id}
+        id={it.id}
+        key={it.id}
         checkState={checkState}
         checkBoxClicked={checkBoxClicked}
         labelText={it.labelText}
@@ -186,15 +190,15 @@ const Tree: React.FC<{ treeData: TreeData }> = ({treeData}) => {
         color={it.color}
         bgColor={it.bgColor}
         disabled={it.disabled}
-        defaultChecked={checkState[c as unknown as string]}
-        children={(it.items) ? it.items.map(treeData2Data(c)) : undefined}
+        defaultChecked={checkState[it.id]}
+        children={(it.items) ? ((c: number) => it.items.map(treeData2Data(c)))(c) : undefined}
       />
   }
        
   return (
     <TreeView
       className={classes.root}
-      defaultExpanded={['0']}
+      defaultExpanded={treeData.map(treeData2InitialExpand).reduce((a, e) => ([...a , ...e]), [])}
       onNodeToggle={(nodeId: string, nodeExpanded: boolean) => handleExpanded(nodeId, nodeExpanded)}
       defaultCollapseIcon={<ArrowDropDownIcon />}
       defaultExpandIcon={<ArrowRightIcon />}
