@@ -68,6 +68,7 @@ export const ExampleCheckbox: React.FC = () => <div>
     <CheckboxInsideTree />
     <CheckboxInsideTree defaultChecked />
     <CheckboxInsideTree disabled /> 
+    <CheckboxInsideTree disabled defaultChecked /> 
   </div>
 
 export default CheckboxInsideTree
