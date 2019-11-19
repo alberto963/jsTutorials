@@ -1,3 +1,6 @@
+Refs: https://material-ui.com/components/tree-view/ (have a look at gmail clone)
+Refs: https://github.com/mui-org/material-ui/issues/17407 for handling checkboxes and tree
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
