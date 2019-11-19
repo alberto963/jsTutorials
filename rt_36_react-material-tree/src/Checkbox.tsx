@@ -48,7 +48,7 @@ const useStyles = makeStyles({
 });
 
 // Inspired by blueprintjs
-const StyledCheckbox = (props: CheckboxProps) => {
+const StyledCheckbox: React.FC<CheckboxProps> = props => {
   const classes = useStyles();
 
   return (
@@ -61,7 +61,7 @@ const StyledCheckbox = (props: CheckboxProps) => {
       inputProps={{ 'aria-label': 'decorative checkbox' }}
       {...props}
     />
-  );
+  )
 }
 
 export const ExampleCheckbox: React.FC = () => <div>
