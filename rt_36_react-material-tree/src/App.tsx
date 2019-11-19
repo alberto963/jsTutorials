@@ -12,7 +12,7 @@ import InfoIcon from '@material-ui/icons/Info'
 import ForumIcon from '@material-ui/icons/Forum'
 import LocalOfferIcon from '@material-ui/icons/LocalOffer'
 
-const treeData: TreeData = [
+const treeData: TreeData = { struct: [
   {labelText: 'All Mail', labelIcon: MailIcon, id: "0"},
   {labelText: 'Trash', labelIcon: DeleteIcon, defaultChecked: true, id: "1", defaultExpanded: true, items: [
     {labelText: 'New My', labelIcon: SupervisorAccountIcon, labelInfo: 'My Info', color: '#1a73e8', bgColor: '#e8f0fe', defaultChecked: true, id: "2"}
@@ -26,14 +26,14 @@ const treeData: TreeData = [
   {labelText: 'History', labelIcon: Label, defaultChecked: true, id: "8", items: [
     {labelText: 'New My2', labelIcon: SupervisorAccountIcon, labelInfo: 'My Info2', color: '#1a73e8', bgColor: '#e8f0fe', id: "9"}
   ]},
-]
+]}
 
 const SimpleContainer: React.FC = () => 
     <React.Fragment>
       <CssBaseline />
       <Container maxWidth='sm' style={{margin: '100px', padding: '25px'}} >
         <Typography component='div' variant={'button'}>
-          {<Tree treeData={treeData} />}
+          {<Tree struct={treeData.struct} />}
         </Typography>
       </Container>
       <Container maxWidth='sm' style={{margin: '100px', padding: '25px'}} >

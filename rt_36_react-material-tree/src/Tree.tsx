@@ -12,7 +12,9 @@ import { StyledTreeItemDataProps }  from './StyledTreeItem'
 
 export type TreeViewState = IDictionary<boolean>
 
-export type TreeData = Array<StyledTreeItemDataProps>
+export type TreeData = {
+  struct: Array<StyledTreeItemDataProps>
+} 
 
 const useStyles = makeStyles(
   createStyles({
@@ -24,7 +26,7 @@ const useStyles = makeStyles(
   }),
 )
 
-const Tree: React.FC<{ treeData: TreeData }> = ({treeData}) => {
+const Tree: React.FC<TreeData> = ({struct}) => {
 
   const treeData2InitialExpand = (it: StyledTreeItemDataProps): Array<string> => {
     const initial: Array<string> = it.defaultExpanded ? [it.id] : []
@@ -38,7 +40,7 @@ const Tree: React.FC<{ treeData: TreeData }> = ({treeData}) => {
   }
 
   const [checkState, setCheckState] = React.useState(() =>
-      treeData.map(treeData2InitialState).reduce((a: TreeViewState, e: TreeViewState) => ({...a, ...e}), {}))
+    struct.map(treeData2InitialState).reduce((a: TreeViewState, e: TreeViewState) => ({...a, ...e}), {}))
     
   const checkBoxClicked = (event: any, checked: boolean, nodeId: string): void => {
     setCheckState( {...checkState, [nodeId]: checked} )
@@ -70,13 +72,13 @@ const Tree: React.FC<{ treeData: TreeData }> = ({treeData}) => {
   return (
     <TreeView
       className={classes.root}
-      defaultExpanded={treeData.map(treeData2InitialExpand).reduce((a, e) => ([...a , ...e]), [])}
+      defaultExpanded={struct.map(treeData2InitialExpand).reduce((a, e) => ([...a , ...e]), [])}
       onNodeToggle={(nodeId: string, nodeExpanded: boolean) => handleExpanded(nodeId, nodeExpanded)}
       defaultCollapseIcon={<ArrowDropDownIcon />}
       defaultExpandIcon={<ArrowRightIcon />}
       defaultEndIcon={<div style={{ width: 24 }} />}
     >
-      {treeData.map(treeData2Data)}
+      {struct.map(treeData2Data)}
     </TreeView>
   )
 }
