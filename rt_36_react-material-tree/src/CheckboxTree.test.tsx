@@ -50,8 +50,13 @@ describe('CheckboxTree', () => {
 
   it('should crash because of duplicated id', () => {
     const div = document.createElement('div')
-    ReactDOM.render(<CheckboxTree struct={[{labelText: 'T0', id: "0", defaultExpanded: true,
-      items: [{labelText: 'T1', id: "0"}]}]}/>, div)
+    try {
+      ReactDOM.render(<CheckboxTree struct={[{labelText: 'T0', id: "0", defaultExpanded: true,
+      items: [{labelText: 'T1', id: "0"}, {labelText: 'T1', id: "0"}]}]}/>, div)
+      fail('it should not reach here')
+    } catch (error) {
+      expect(error).toEqual(new Error("Warning: Encountered two children with the same key, '0'"));
+    }
     ReactDOM.unmountComponentAtNode(div)
   })
 })
