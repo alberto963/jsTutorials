@@ -17,7 +17,7 @@ const treeData: CheckboxTreeData = { struct: [
   {labelText: 'Trash', labelIcon: DeleteIcon, defaultChecked: true, id: "1", defaultExpanded: true, items: [
     {labelText: 'New My', labelIcon: SupervisorAccountIcon, labelInfo: 'My Info', color: '#1a73e8', bgColor: '#e8f0fe', defaultChecked: true, id: "2"}
   ]},
-  {labelText: 'Categories', labelIcon: Label, color: '#1a73e8', bgColor: '#e8f0fe', id: "3", defaultExpanded: false, items: [
+  {labelText: 'Categories', labelIcon: Label, color: '#1a73e8', bgColor: '#e8f0fe', id: "3", defaultExpanded: true, items: [
     {labelText: 'Social', labelIcon: SupervisorAccountIcon, labelInfo: '90', color: '#1a73e8', bgColor: '#e8f0fe', defaultChecked: true, disabled: true, id: "4"},
     {labelText: 'Updates', labelIcon: InfoIcon, labelInfo: '2,2000', color: '#e3742f', bgColor: '#e8f0fe', id: "5"},
     {labelText: 'Forums', labelIcon: ForumIcon, labelInfo: '3,330', color: '#a250f5', bgColor: '#f3e8fd', defaultChecked: true, id: "6"},

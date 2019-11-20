@@ -3,8 +3,8 @@ import { makeStyles, createStyles } from '@material-ui/core/styles'
 import TreeView from '@material-ui/lab/TreeView'
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown'
 import ArrowRightIcon from '@material-ui/icons/ArrowRight'
-import StyledTreeItem  from './CheckboxTreeItem'
-import { CheckboxTreeItemDataProps }  from './CheckboxTreeItem'
+import CheckboxTreeItem, { CheckboxTreeItemDataProps }  from './CheckboxTreeItem'
+
 
 interface IDictionary<T> {
   [key: string]: T
@@ -48,26 +48,27 @@ const CheckboxTree: React.FC<CheckboxTreeData> = ({struct}) => {
   }
 
   const handleExpanded = (nodeId: string, nodeExpanded: boolean) => {
-    // console.info('Node expanded ', nodeId, nodeExpanded, checkState)
+    console.info('Node expanded ', nodeId, nodeExpanded, checkState)
   }
 
   const classes = useStyles()
 
-  const treeData2Data = (it: CheckboxTreeItemDataProps, i: number): JSX.Element => <StyledTreeItem
-        nodeId={it.id}
-        id={it.id}
-        key={it.id}
-        checkState={checkState}
-        checkBoxClicked={checkBoxClicked}
-        labelText={it.labelText}
-        labelIcon={it.labelIcon}
-        labelInfo= {it.labelInfo}
-        color={it.color}
-        bgColor={it.bgColor}
-        disabled={it.disabled}
-        defaultChecked={checkState[it.id]}
-        children={it.items ? it.items.map(treeData2Data) : undefined}
-      />
+  const treeData2Data = (it: CheckboxTreeItemDataProps, i: number): JSX.Element => 
+    <CheckboxTreeItem
+      nodeId={it.id}
+      id={it.id}
+      key={it.id}
+      checkState={checkState}
+      checkBoxClicked={checkBoxClicked}
+      labelText={it.labelText}
+      labelIcon={it.labelIcon}
+      labelInfo= {it.labelInfo}
+      color={it.color}
+      bgColor={it.bgColor}
+      disabled={it.disabled}
+      defaultChecked={checkState[it.id]}
+      children={it.items ? it.items.map(treeData2Data) : undefined}
+    />
        
   return (
     <TreeView

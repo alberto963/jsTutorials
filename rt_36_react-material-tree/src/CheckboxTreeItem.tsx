@@ -6,7 +6,7 @@ import TreeItem from '@material-ui/lab/TreeItem'
 import { TreeItemProps } from '@material-ui/lab/TreeItem/TreeItem'
 import { SvgIconProps } from '@material-ui/core/SvgIcon'
 import { CheckboxTreeViewState }  from './CheckboxTree'
-import Checkbox  from './CheckboxInsideTree'
+import Checkbox from './CheckboxInsideTree'
 
 declare module 'csstype' {
   interface Properties {
@@ -19,7 +19,7 @@ export type CheckboxTreeItemDataProps = {
   id: string
   bgColor?: string
   color?: string
-  labelIcon: React.ElementType<SvgIconProps>
+  labelIcon?: React.ElementType<SvgIconProps>
   labelInfo?: string
   labelText?: string
   defaultChecked?: boolean
@@ -91,14 +91,14 @@ const CheckboxTreeItem: React.FC<CheckboxTreeItemProps> =
       <Checkbox
         id={`checkbox-${nodeId}`}
         onChange={(event: any, checked: boolean) => checkBoxClicked(event, checked, nodeId)}
-        onClick={(e: any) => e.stopPropagation()}
+        onClick={(event: any) => event.stopPropagation()}
         color='primary'
         defaultChecked={defaultChecked}
         disabled={disabled}
       />
       <Typography variant='caption'>{nodeId}</Typography>
     </div>
-    <LabelIcon color='inherit' className={classes.labelIcon} />
+    {LabelIcon ? <LabelIcon color='inherit' className={classes.labelIcon} /> : null}
     <Typography variant='body2' className={classes.labelText}>
       {labelText}
     </Typography>
@@ -111,6 +111,7 @@ const CheckboxTreeItem: React.FC<CheckboxTreeItemProps> =
     <TreeItem
       label={label}
       nodeId={nodeId}
+      key={nodeId}
       style={{
         '--tree-view-color': color,
         '--tree-view-bg-color': bgColor,
