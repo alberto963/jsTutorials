@@ -1,7 +1,7 @@
-import React from 'react';
-import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
-import Checkbox, { CheckboxProps } from '@material-ui/core/Checkbox';
+import React from 'react'
+import clsx from 'clsx'
+import { makeStyles } from '@material-ui/core/styles'
+import Checkbox, { CheckboxProps } from '@material-ui/core/Checkbox'
 
 const useStyles = makeStyles({
   root: {
@@ -45,11 +45,11 @@ const useStyles = makeStyles({
       backgroundColor: '#106ba3',
     },
   },
-});
+})
 
 // Inspired by blueprintjs
 const CheckboxInsideTree: React.FC<CheckboxProps> = props => {
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
     <Checkbox

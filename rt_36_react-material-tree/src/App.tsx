@@ -39,6 +39,11 @@ const SimpleContainer: React.FC = () =>
       <Container maxWidth='sm' style={{margin: '100px', padding: '25px'}} >
         <Typography component={ExampleCheckbox} variant={'h1'}  />
       </Container>
+      <Container maxWidth='sm' style={{margin: '100px', padding: '25px'}} >
+        <Typography component='div' variant={'h2'} >
+          {Object.entries(treeData.struct[0])[0][1]}
+        </Typography>
+      </Container>
     </React.Fragment>
 
 export default SimpleContainer
