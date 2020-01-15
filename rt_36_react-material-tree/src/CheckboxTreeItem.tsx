@@ -5,7 +5,7 @@ import { Theme } from '@material-ui/core/styles/createMuiTheme'
 import TreeItem from '@material-ui/lab/TreeItem'
 import { TreeItemProps } from '@material-ui/lab/TreeItem/TreeItem'
 import { SvgIconProps } from '@material-ui/core/SvgIcon'
-import { CheckboxTreeViewState }  from './CheckboxTree'
+import { CheckboxTreeViewState } from './CheckboxTree'
 import Checkbox from './CheckboxInsideTree'
 
 declare module 'csstype' {
@@ -24,16 +24,21 @@ export type CheckboxTreeItemDataProps = {
   labelText?: string
   defaultChecked?: boolean
   disabled?: boolean
-  defaultExpanded? : boolean
+  checked?: boolean
+  defaultExpanded?: boolean
+  indeterminate?: boolean
   items?: Array<CheckboxTreeItemDataProps>
- }
+}
 
- export type CheckboxTreeItemInnerProps = {
+export type CheckboxTreeItemInnerProps = {
   checkState: CheckboxTreeViewState
+  interState: CheckboxTreeViewState
   checkBoxClicked: Function
- }
+}
 
-export type CheckboxTreeItemProps = TreeItemProps & CheckboxTreeItemDataProps & CheckboxTreeItemInnerProps
+export type CheckboxTreeItemProps = TreeItemProps &
+  CheckboxTreeItemDataProps &
+  CheckboxTreeItemInnerProps
 
 const useTreeItemStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -76,36 +81,58 @@ const useTreeItemStyles = makeStyles((theme: Theme) =>
     labelText: {
       fontWeight: 'inherit',
       flexGrow: 1,
-    },
-  }),
+    }
+  })
 )
 
-const CheckboxTreeItem: React.FC<CheckboxTreeItemProps> =
-  ({nodeId, labelText, labelIcon: LabelIcon, labelInfo, color, bgColor, defaultChecked, disabled, checkBoxClicked, checkState, ...other}) => {
+const CheckboxTreeItem: React.FC<CheckboxTreeItemProps> = ({
+  nodeId,
+  labelText,
+  labelIcon: LabelIcon,
+  labelInfo,
+  color,
+  bgColor,
+  defaultChecked,
+  indeterminate,
+  checked,
+  disabled,
+  checkBoxClicked,
+  checkState,
+  interState,
+  ...other
+}) => {
   const classes = useTreeItemStyles()
-
+  // console.log(checkState, interState)
   // className={classes.globalFilterCheckbox}
 
-  const label = <div className={classes.labelRoot}>
-    <div style={{ display: 'flex', alignItems: 'center' }}>
-      <Checkbox
-        id={`checkbox-${nodeId}`}
-        onChange={(event: any, checked: boolean) => checkBoxClicked(event, checked, nodeId)}
-        onClick={(event: any) => event.stopPropagation()}
-        color='primary'
-        defaultChecked={defaultChecked}
-        disabled={disabled}
-      />
-      <Typography variant='caption'>{nodeId}</Typography>
+  const label = (
+    <div className={classes.labelRoot}>
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <Checkbox
+          id={`checkbox-${nodeId}`}
+          onChange={(event: any, checked: boolean) =>
+            checkBoxClicked(event, checked, nodeId)
+          }
+          onClick={(event: any) => event.stopPropagation()}
+          color='primary'
+          defaultChecked={defaultChecked}
+          disabled={disabled}
+          indeterminate={indeterminate}
+          checked={checked}
+        />
+        <Typography variant='caption'>{nodeId}</Typography>
+      </div>
+      {LabelIcon ? (
+        <LabelIcon color='inherit' className={classes.labelIcon} />
+      ) : null}
+      <Typography variant='body2' className={classes.labelText}>
+        {labelText}
+      </Typography>
+      <Typography variant='caption' color='inherit'>
+        {labelInfo}
+      </Typography>
     </div>
-    {LabelIcon ? <LabelIcon color='inherit' className={classes.labelIcon} /> : null}
-    <Typography variant='body2' className={classes.labelText}>
-      {labelText}
-    </Typography>
-    <Typography variant='caption' color='inherit'>
-      {labelInfo}
-    </Typography>
-  </div>
+  )
 
   return (
     <TreeItem
