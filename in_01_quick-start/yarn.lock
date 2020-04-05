@@ -1149,8 +1149,8 @@ acorn-walk@^6.0.1:
   resolved "https://registry.yarnpkg.com/acorn-walk/-/acorn-walk-6.1.0.tgz#c957f4a1460da46af4a0388ce28b4c99355b0cbc"
 
 acorn@^5.0.0, acorn@^5.0.3, acorn@^5.5.3, acorn@^5.6.0, acorn@^5.6.2:
-  version "5.7.3"
-  resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.7.3.tgz#67aa231bf8812974b85235a96771eb6bd07ea279"
+  version "5.7.4"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.7.4.tgz#3e8d8a9947d0599a1796d10225d7432f4a4acf5e"
 
 acorn@^6.0.1:
   version "6.0.2"
@@ -4264,20 +4264,20 @@ inferno-scripts@7.0.4:
   optionalDependencies:
     fsevents "2.0.1"
 
-inferno-shared@7.1.10:
-  version "7.1.10"
-  resolved "http://138.120.119.175:8081/artifactory/api/npm/alu-npm-virtual/inferno-shared/-/inferno-shared-7.1.10.tgz#8f835bdeda5226f5ef9ba60b848b4d252f8fa89d"
+inferno-shared@7.4.2:
+  version "7.4.2"
+  resolved "https://registry.yarnpkg.com/inferno-shared/-/inferno-shared-7.4.2.tgz#400cf6d19a077af9e5e852e1f189726391efa273"
 
-inferno-vnode-flags@7.1.10:
-  version "7.1.10"
-  resolved "http://138.120.119.175:8081/artifactory/api/npm/alu-npm-virtual/inferno-vnode-flags/-/inferno-vnode-flags-7.1.10.tgz#4731f2f71c4f50d9d9533562ea9ab3cd2c0efc0f"
+inferno-vnode-flags@7.4.2:
+  version "7.4.2"
+  resolved "https://registry.yarnpkg.com/inferno-vnode-flags/-/inferno-vnode-flags-7.4.2.tgz#54982dabe34f308853ba17de7de4241e23769135"
 
-inferno@7.1.10:
-  version "7.1.10"
-  resolved "http://138.120.119.175:8081/artifactory/api/npm/alu-npm-virtual/inferno/-/inferno-7.1.10.tgz#826a3bc7482a2567b3ac53cd25fb736ca98d3219"
+inferno@^7.1.10:
+  version "7.4.2"
+  resolved "https://registry.yarnpkg.com/inferno/-/inferno-7.4.2.tgz#833cc423ee7b939fad705c59ea41924f31c92453"
   dependencies:
-    inferno-shared "7.1.10"
-    inferno-vnode-flags "7.1.10"
+    inferno-shared "7.4.2"
+    inferno-vnode-flags "7.4.2"
     opencollective-postinstall "^2.0.2"
 
 inflight@^1.0.4:
