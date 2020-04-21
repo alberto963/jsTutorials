@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+
+<head>
+<!-- Import Web Component polyfills and all Vaadin Core Elements. -->
+
+<!-- Bower -->
+<script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+<link href="bower_components/vaadin-core-elements/vaadin-core-elements.html" rel="import">
+
+<script>
+	function getJSON(url, callback) {
+		var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+				callback(JSON.parse(xhr.responseText));
+			}
+		};
+		xhr.open('GET', url, true);
+		xhr.send();
+	}
+</script>
+</head>
+
+<body>
+
+	<vaadin-grid selection-mode="multi">
+	<table>
+		<!-- Define the columns and their mapping to data properties. -->
+		<col name="f0" sortable="" sort-direction="asc">
+		<col name="f1" sortable="" sort-direction="desc">
+		<col name="f2">
+		<col name="f3">
+		<col name="f4">
+		<col name="f5">
+		<col name="f6">
+		<col name="f7">
+		<col name="f8">
+		<col name="f9">
+
+		<!-- Define the column headings. -->
+		<thead>
+			<tr>
+				<th>F0</th>
+				<th>F1</th>
+				<th>F2</th>
+				<th>F3</th>
+				<th>F4</th>
+				<th>F5</th>
+				<th>F6</th>
+				<th>F7</th>
+				<th>F8</th>
+				<th>F9</th>
+			</tr>
+		</thead>
+	</table>
+	</vaadin-grid>
+
+	<script>
+		// The Web Components polyfill introduces a custom event we can
+		// use to determine when the custom elements are ready to be used.
+		document.addEventListener("WebComponentsReady", function() {
+
+			// Reference to the grid element.
+			var grid = grid || document.querySelector('vaadin-grid');
+
+			grid.items = function(params, callback) {
+				// Fetch the JSON data from a URL
+				var url = 'api/rows.json';
+				getJSON(url, function(data) {
+					var size = grid.size;
+					if (params.index + params.count == 0) {
+						// Requested for the final batch of data, increase the size
+						size += 5;
+						callback(data, size);
+					}
+				});
+
+				// Update footer label
+				//grid.footer.getCell(0, 0).content = 'Current size: ' + grid.size;
+			};
+		});
+	</script>
+
+</body>
+</html>

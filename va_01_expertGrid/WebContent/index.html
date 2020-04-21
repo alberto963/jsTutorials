@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+
+ <head>
+   <!-- Import Web Component polyfills and all Vaadin Core Elements. -->
+
+   <!-- CDN -->
+   <!--  <script src="https://cdn.vaadin.com/vaadin-core-elements/latest/webcomponentsjs/webcomponents-lite.min.js"></script>
+   <link href="https://cdn.vaadin.com/vaadin-core-elements/latest/vaadin-core-elements/vaadin-core-elements.html" rel="import">
+	-->
+
+   <!-- Bower -->
+   <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+   <link href="bower_components/vaadin-core-elements/vaadin-core-elements.html" rel="import"> 
+
+   <!-- ZIP archive -->
+   <!-- <script src="deps/webcomponentsjs/webcomponents-lite.min.js"></script>
+   <link href="deps/vaadin-core-elements/vaadin-core-elements.html" rel="import"> -->
+ </head>
+ 
+ <body>
+
+   <vaadin-grid selection-mode="multi">
+     <table>
+       <!-- Define the columns and their mapping to data properties. -->
+       <col name="f0">
+       <col name="f1">
+       <col name="f2">
+       <col name="f3">
+       <col name="f4">
+       <col name="f5">
+       <col name="f6">
+       <col name="f7">
+       <col name="f8">
+       <col name="f9">
+
+       <!-- Define the column headings. -->
+       <thead>
+         <tr>
+           <th>F0</th>
+           <th>F1</th>
+           <th>F2</th>
+           <th>F3</th>
+           <th>F4</th>
+           <th>F5</th>
+           <th>F6</th>
+           <th>F7</th>
+           <th>F8</th>
+           <th>F9</th>
+         </tr>
+       </thead>
+     </table>
+   </vaadin-grid>
+
+   <script>
+
+		// The Web Components polyfill introduces a custom event we can
+		// use to determine when the custom elements are ready to be used.
+		document.addEventListener("WebComponentsReady", function() {
+
+			// Reference to the grid element.
+			var grid = document.querySelector("vaadin-grid");
+
+			// Add some example data as an array.
+			grid.items = [];
+
+			for (i = 0; i < 50000; i++) {
+				grid.items.push({
+					"f0" : "StringValue " + i,
+					"f1" : i,
+					"f2" : "Fixed",
+					"f9" : "Fixed"
+				});
+			}
+			grid.size = grid.items.length;
+		});
+		
+	</script>
+
+ </body>
+</html>

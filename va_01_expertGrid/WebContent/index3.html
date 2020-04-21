@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+
+<head>
+<!-- Import Web Component polyfills and all Vaadin Core Elements. -->
+
+<!-- Bower -->
+<script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+
+<script src="bower_components/underscore/underscore.min.js"></script>
+<script src="bower_components/moment/min/moment.min.js"></script>
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+
+<link href="bower_components/vaadin-core-elements/vaadin-core-elements.html" rel="import">
+
+<link href='styles/main.css' rel='stylesheet' type='text/css'>
+
+</head>
+
+<body>
+
+	<div class="container">
+		<div class="title col-sm-12">
+			<h1>Visualizing GRID</h1>
+			<h2>An example test grid using vaadin</h2>
+			<p class="authors">AP - March 14, 2016</p>
+			<br>
+			<button onclick="startEvents()">Start Events</button>
+		</div>
+
+		<div class="graphic col-sm-10 pull-right">
+
+			<vaadin-grid selection-mode="multi" frozen-columns="2">
+			<table>
+
+				<!-- Define the columns and their mapping to data properties. -->
+				<col name="f0" min-width="150" flex="1" sortable="" sort-direction="asc">
+				<col name="f1" width="100" flex="1" sortable="" sort-direction="desc">
+				<col name="f2" min-width="200" flex="1">
+				<col name="f3" max-width="200" flex="2">
+				<col name="f4" max-width="100" flex="2">
+				<col name="f5" hidable="">
+				<col name="f6" hidable="" hidden="">
+				<col name="f7" hidable="" hidden="">
+				<col name="f8" hidable="">
+
+				<!-- Define the column headings. -->
+				<thead>
+					<tr>
+						<th>F0</th>
+						<th>F1</th>
+						<th>F2</th>
+						<th>F3</th>
+						<th>F4</th>
+						<th>F5</th>
+						<th>F6</th>
+						<th>F7</th>
+						<th>F8</th>
+					</tr>
+				</thead>
+			</table>
+			
+			</vaadin-grid>
+		</div>
+
+	</div>
+	
+	<!-- Custom Code -->
+	<script src="scripts/common.js"></script>
+	<script src="scripts/grid.js"></script>
+
+</body>
+</html>
