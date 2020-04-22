@@ -3,23 +3,35 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "^4.0.1",
-    "react": "^16.3.1",
-    "react-dom": "^16.3.1",
-    "react-redux": "5.0.6",
-    "react-router": "^5.0.0",
-    "react-router-dom": "^4.3.1",
-    "redux": "^3.3.1",
-    "redux-thunk": "^2.3.0"
+    "@material-ui/core": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-redux": "latest",
+    "react-router": "latest",
+    "react-router-dom": "latest",
+    "redux": "latest",
+    "redux-thunk": "latest"
   },
   "devDependencies": {
-    "react-scripts": "^1.1.4",
-    "eslint-plugin-react-hooks": "^1.6.0"
+    "react-scripts": "latest",
+    "eslint-plugin-react-hooks": "latest"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React from 'react'
 
 import { Route, Link, BrowserRouter as Router, Switch } from 'react-router-dom'
 
@@ -36,7 +36,7 @@ const Routes = () => {
       <Router>
       <div className={classes.root}>
         <AppBar position='static'>
-          <Tabs variant='fullWidth' value={value} onChange={useCallback((e, v) => setValue(v), [value])}>
+          <Tabs variant='fullWidth' value={value} onChange={(e, v) => setValue(v)}>
             <Tab label='Home' component={Link} to='/' />
             {panels.map(t => <Tab key={t} label={t} component={Link} to={'/' + t} />)}
             <Tab label='About' component={Link} to='/about' />

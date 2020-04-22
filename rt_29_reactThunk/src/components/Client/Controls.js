@@ -14,7 +14,7 @@ export const Controls = () => {
     getData(id, panel)
 
     return () => document.title = ``
-  }, [id]) 
+  }, [id, getData, panel]) 
 
   return (
     <Grid item xs={12}>
