@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './App.css';
 
-// These two containers are siblings in the DOM
+// This container and app-root are siblings in the DOM
 const modalRoot = document.getElementById('modal-root');
 
 class Modal extends React.Component {
@@ -54,6 +54,7 @@ class Parent extends React.Component {
   render() {
     return (
       <div onClick={this.handleClick}>
+        <p>This is a Component defined as a Class</p>
         <p>Number of clicks: {this.state.clicks}</p>
         <p>
           Open up the browser DevTools
@@ -71,13 +72,12 @@ class Parent extends React.Component {
 
 function Child() {
   // The click event on this button will bubble up to parent,
-  // because there is no 'onClick' attribute defined
+  // even if there is no 'onClick' attribute defined
   return (
     <div className="modal">
       <button>Click</button>
     </div>
   );
 }
-
 
 export default Parent;
