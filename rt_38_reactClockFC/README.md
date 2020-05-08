@@ -12,5 +12,9 @@ converti it into a functional componenent
 
 ref: https://reactjs.org/docs/state-and-lifecycle.html
 
+Added a capability to make a REST get when clicking a button
+ref: https://www.newline.co/fullstack-react/articles/using-create-react-app-with-a-server/
+
+ref: https://www.twilio.com/blog/react-app-with-node-js-server-proxy
 
 

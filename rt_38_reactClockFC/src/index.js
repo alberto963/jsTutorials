@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useCallback } from "react"
 import ReactDOM from 'react-dom'
 
 const DateHeader = ({ interval }) => 
@@ -23,10 +23,18 @@ const Clock = ({ interval = 1000 }) => {
   )
 }
 
+const Button = (props) => {
+  const reset = useCallback(() => fetch('/api/reset')
+    .then(response => response.json())
+    .then(o => console.info(o)), [])
+
+  return <button onClick={reset}>Reset</button>
+}
 const Clocks = ({ intervals }) => intervals.map((i, idx) => <Clock interval={i} key={idx} />)
 
 ReactDOM.render(
   <>
+    <Button />
     <Clock />
     <Clocks intervals={[500, 2000, 4000]} />
     {[5000, 10000].map((i, idx) => <Clock interval={i} key={idx} />)}
