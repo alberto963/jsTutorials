@@ -42,10 +42,9 @@ const NextButton = ({setDate}) => {
   const next = useCallback(() => fetch('/api/next', {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
-      'csrf-token': csrf,
+      'Content-Type': 'application/x-www-form-urlencoded',
     },
-    body: JSON.stringify({ date: new Date(0) }),
+    body: 'date=' + new Date(0) // + '&_csrf=' + csrf
   })
   .then(response => response.json())
   .then(data => {
