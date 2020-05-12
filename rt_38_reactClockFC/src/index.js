@@ -23,28 +23,29 @@ const Clock = ({ interval = 1000 }) => {
   )
 }
 
-const ResetButton = ({setDate}) => {
+const GetCsrfButton = ({set_csrf}) => {
 
-  const reset = useCallback(() => fetch('/api/reset', {
+  const getCsrf = useCallback(() => fetch('/api/getCsrf', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
       }
     })
     .then(response => response.json())
-    .then(data => setDate(new Date(Date.parse(data.date)))), [setDate])
+    .then(data => set_csrf(data._csrf)), [set_csrf])
 
-  return <button onClick={reset}>Reset</button>
+  return <button onClick={getCsrf}>Get Csrf</button>
 }
 
-const NextButton = ({setDate}) => {
-  const csrf = document.cookie.replace(/(?:(?:^|.*;\s*)_csrf\s*=\s*([^;]*).*$)|^.*$/, "$1")
-  const next = useCallback(() => fetch('/api/next', {
+const ResetButton = ({setDate, _csrf}) => {
+  // const csrf = document.cookie.replace(/(?:(?:^|.*;\s*)_csrf\s*=\s*([^;]*).*$)|^.*$/, "$1")
+  const reset = useCallback(() => fetch('/api/reset', {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
+      'Content-Type': 'application/json',
+      'csrf-token': _csrf,
     },
-    body: 'date=' + new Date(0) // + '&_csrf=' + csrf
+    body: JSON.stringify({ date: new Date() })
   })
   .then(response => response.json())
   .then(data => {
@@ -53,30 +54,28 @@ const NextButton = ({setDate}) => {
   })
   .catch((error) => {
     console.error('Error:', error);
-  }), [setDate, csrf])
+  }), [setDate, _csrf])
 
-  return <button onClick={next}>Next</button>
-}
-
-const AppHeader = (props) => {
-  const [startDate, setStartDate] = useState(new Date())
-
-  return(
-    <>
-      <ResetButton setDate={setStartDate} />
-      <NextButton setDate={setStartDate} />
-      <FormattedDate date={startDate} />
-    </>)
+  return <button onClick={reset}>Reset</button>
 }
 
 const Clocks = ({ intervals }) => intervals.map((i, idx) => <Clock interval={i} key={idx} />)
 
-ReactDOM.render(
-  <>
-    <AppHeader />
-    <Clock />
-    <Clocks intervals={[500, 2000, 4000]} />
-    {[5000, 10000].map((i, idx) => <Clock interval={i} key={idx} />)}
-  </>,
+const App = (props) => {
+  const [startDate, setStartDate] = useState(new Date())
+  const [_csrf, set_csrf] = useState()
+
+  return(
+    <>
+      <GetCsrfButton set_csrf={set_csrf} />
+      <ResetButton setDate={setStartDate} _csrf={_csrf} />
+      <FormattedDate date={startDate} />
+      <Clock />
+      <Clocks intervals={[500, 2000, 4000]} />
+      {[5000, 10000].map((i, idx) => <Clock interval={i} key={idx} />)}
+    </>)
+}
+
+ReactDOM.render(<App />,
   document.getElementById('root')
 )
