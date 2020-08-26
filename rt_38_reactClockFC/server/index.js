@@ -16,18 +16,16 @@ app.use(parseForm);
 
 app.use(pino);
 
-app.get('/api/reset', (req, res) => {
+app.get('/api/getCsrf', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
   res.send(JSON.stringify({
-    date: new Date()
+    _csrf: req.csrfToken()
   }));
 });
 
-app.post('/api/next', (req, res) => {
+app.post('/api/reset', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
-  res.send(JSON.stringify({
-    date: new Date()
-  }));
+  res.send(JSON.stringify({ date: new Date(0) }));
 });
 
 app.listen(3001, () =>

@@ -20,3 +20,5 @@ ref: https://www.twilio.com/blog/react-app-with-node-js-server-proxy
 Added a capability to make a REST POST with XSRF attribute
 ref: https://www.twilio.com/blog/2018/01/protect-your-node-js-app-from-cross-site-request-forgery.html
 
+## Run
+npm run dev
