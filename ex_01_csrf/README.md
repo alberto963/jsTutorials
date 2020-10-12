@@ -1,15 +1,9 @@
-ex_01: This project was created from scratch
+# Node.js CSRF Example
 
-## Table of Contents
+## Available Scripts
 
-- [Introduction](#Introduction)
+In the project directory, you can run:
 
+### `node .`
 
-## Introduction
-
-Simple Exercise on CSRF
-
-ref: https://www.twilio.com/blog/2018/01/protect-your-node-js-app-from-cross-site-request-forgery.html
-
-## Run
-node .
+Open [http://localhost:4000](http://localhost:4000) to view it in the browser.
