@@ -31,6 +31,13 @@ const GridExample = () => {
 
   const filterParams = {
     comparator: (filterLocalDateAtMidnight, cellValue) => {
+      // For filter date (and time) please see: https://github.com/ag-grid/ag-grid/issues/2233
+      // With 'latest' version (from 24 on) of community aggrid filterLocalDateAtMidnight provides also time
+      // With previous version only date is provided - uncomment the following line to see what is provided
+
+      // console.info('filterLocalDateAtMidnight=', filterLocalDateAtMidnight)
+      // console.info('cellValue=', cellValue)
+      
       var dateAsString = cellValue
       var dateParts = dateAsString.split('/')
       var cellDate = new Date(

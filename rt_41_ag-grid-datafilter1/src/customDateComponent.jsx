@@ -1,6 +1,8 @@
 import React, {forwardRef, useEffect, useImperativeHandle, useRef, useState,} from 'react'
 import FlatPikr from 'flatpickr'
 
+// import './fontawesome-free-5.15.1-web/css/all.css' // Imported in index.html
+
 // import '../node_modules/flatpickr/dist/flatpickr.css'
 // import '../node_modules/flatpickr/dist/themes/material_blue.css'
 import '../node_modules/flatpickr/dist/themes/material_green.css'
@@ -26,7 +28,8 @@ const CustomDateComponent = (props, ref) => {
 
   const pickrConfig = {
     onChange: onDateChanged,
-    dateFormat: 'd/m/Y',
+    enableTime: true,
+    dateFormat: 'd/m/Y H:i',
     wrap: true,
   }
   
@@ -50,7 +53,10 @@ const CustomDateComponent = (props, ref) => {
     setInputAriaLabel: label => refInput.current ?  refInput.current.setAttribute('aria-label', label) : e,
   }
 
-  useEffect(() => setPickr(FlatPikr(refFlatPickr.current, pickrConfig)), [])
+  useEffect(() => {
+    const fp = FlatPikr(refFlatPickr.current, pickrConfig)
+    setPickr(fp)
+  }, [])
 
   useEffect(() => pickr ? pickr.calendarContainer.classList.add('ag-custom-component-popup') : e, [pickr])
 
