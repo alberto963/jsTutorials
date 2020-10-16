@@ -24,7 +24,15 @@ const GridExample = () => {
 
     httpRequest.onreadystatechange = () => {
       if (httpRequest.readyState === 4 && httpRequest.status === 200) {
-        updateData(JSON.parse(httpRequest.responseText))
+        const debug = true
+        const hardData = [
+        {"athlete":"A1","age":1,"country":"X","year":2008,"date":"24/10/2020","sport":"S","gold":8,"silver":0,"bronze":0,"total":8},
+        {"athlete":"A2","age":2,"country":"X","year":2004,"date":"29/10/2020","sport":"S","gold":6,"silver":0,"bronze":2,"total":8},
+        {"athlete":"A2","age":3,"country":"X","year":2012,"date":"12/10/2020","sport":"S","gold":4,"silver":2,"bronze":0,"total":6},
+        {"athlete":"A3","age":4,"country":"X","year":2008,"date":"24/10/2020","sport":"S","gold":1,"silver":2,"bronze":3,"total":6}
+      ]
+        const data = !debug ? JSON.parse(httpRequest.responseText) : hardData
+        updateData(data)
       }
     }
   }
