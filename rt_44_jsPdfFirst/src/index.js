@@ -19,46 +19,21 @@ const generateReport = ({
     minLatency = '',
     maxLatency = '',
     data3}) => {
-    // Default export is a4 paper, portrait, using millimeters for units
-    // const doc = new jsPDF()
-    var doc = new jsPDF({ putOnlyUsedFonts: true, orientation: 'landscape' })
-
-    const createHeaders = (keys, prompts) => {
-        var result = []
-        for (var i = 0; i < keys.length; i += 1) {
-          result.push({
-            id: keys[i],
-            name: keys[i],
-            prompt: prompts[i],
-            width: 60,
-            align: 'center',
-            padding: 0
-          })
-        }
-        return result
-    }
     
-    const headers12 = createHeaders([
-        'sample_time',
-        'bit_errors',
-        'bit_error_rate',
-        'total_test_time',
-        'result'
-      ],[
-        'Sample Time',
-        'Bit Errors',
-        'Bit Error Rate',
-        'Total Test Time',
-        'Result'
-    ])
+    var doc = new jsPDF({ putOnlyUsedFonts: true, orientation: 'landscape' })
+    
+    const headers12 = [
+        {name: 'sample_time', prompt: 'Sample Time', width: 70, },
+        {name: 'bit_errors', prompt: 'Bit Errors', width: 60, },
+        {name: 'bit_error_rate', prompt: 'Bit Error Rate', width: 70, },
+        {name: 'total_test_time', prompt: 'Total Test Time', width: 70, },
+        {name: 'result', prompt: 'Result', width: 60, }
+      ]
 
-    const headers3 = createHeaders([
-        'sample_time',
-        'bit_errors'
-      ],[
-        'Sample Time',
-        'Value in ms'
-    ])
+    const headers3 = [
+        {name: 'sample_time', prompt: 'Sample Time', width: 60, },
+        {name: 'bit_errors', prompt: 'Value (microsecs))', width: 60, }
+      ]
 
     doc.setFontSize(10)
     let ix = 15
@@ -121,24 +96,16 @@ const generateReport = ({
 const App = () => {
 
     const onChange = event => {
-        console.log('value=', event.target.value)
+        console.log('event=', event)
 
-        var generateData = function(amount) {
-            var result = []
-            var data = {
-                // sample_time: new Date().toString(),
-              sample_time: '10-10-1010',
-              bit_errors: '3',
-              bit_error_rate: '1x10-11',
-              total_test_time: '120',
-              result: 'Pass'
-            }
-            for (var i = 0; i < amount; i += 1) {
-              data.id = (i + 1).toString()
-              result.push(Object.assign({}, data))
-            }
-            return result
-          }
+        const generateData = amount => Array(amount).fill({
+                // sample_time: new Date().toUTCString().trim(),
+                sample_time: '10-10-1010',
+                bit_errors: '3',
+                bit_error_rate: '1x10-11',
+                total_test_time: '120',
+                result: 'Pass'
+              })
 
         const doc = generateReport({
             testStatus: 'Success',
@@ -147,7 +114,7 @@ const App = () => {
             data2: generateData(5),
             data3: generateData(5)
         })
-        doc.save('a4.pdf')
+        doc.save('report.pdf')
     }
 
     return <button onClick={onChange}>Create sample PDF</button>
