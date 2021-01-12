@@ -28,16 +28,16 @@ const generateReport = ({
         {name: 'bit_error_rate', prompt: 'Bit Error Rate', width: 70, },
         {name: 'total_test_time', prompt: 'Total Test Time', width: 70, },
         {name: 'result', prompt: 'Result', width: 60, }
-      ]
+    ]
 
     const headers3 = [
         {name: 'sample_time', prompt: 'Sample Time', width: 60, },
-        {name: 'bit_errors', prompt: 'Value (microsecs))', width: 60, }
-      ]
+        {name: 'bit_errors', prompt: 'Value (microsecs)', width: 60, }
+    ]
 
     doc.setFontSize(10)
     let ix = 15
-    let iy = 15
+    let iy = 10
     doc.text('Test Status:', ix, iy)
     doc.text(testStatus, ix + 60, iy)
 
@@ -47,7 +47,7 @@ const generateReport = ({
     doc.text('BER Measurement Result:', ix, iy + 10)
     doc.text(berMeasurementResult, ix + 60, iy + 10)
 
-    iy = 35
+    iy = 30
     doc.text('PRBS Start Time A-Z:', ix, iy)
     doc.text(prbsStartTimeAZ, ix + 60, iy)
 
@@ -62,7 +62,7 @@ const generateReport = ({
     doc.text(prbsEndTimeZA, ix + 60, iy + 5)
 
     ix = 15
-    iy = 50
+    iy = 45
     doc.table(ix, iy + 5, data1, headers12, { fontSize: 6, autoSize: true })
     doc.text('BER Measurements A-Z', ix, iy)
     doc.table(ix + 145, iy + 5, data2, headers12, { fontSize: 6, autoSize: true })
@@ -96,23 +96,34 @@ const generateReport = ({
 const App = () => {
 
     const onChange = event => {
-        console.log('event=', event)
 
-        const generateData = amount => Array(amount).fill({
-                // sample_time: new Date().toUTCString().trim(),
-                sample_time: '10-10-1010',
-                bit_errors: '3',
-                bit_error_rate: '1x10-11',
-                total_test_time: '120',
-                result: 'Pass'
-              })
+        const date = new Date().toUTCString()
+
+        const data = Array(5).fill({
+            // sample_time: '10-10-1010',
+            sample_time: date,
+            bit_errors: '3',
+            bit_error_rate: '1x10-11',
+            total_test_time: '120',
+            result: 'Pass'
+        })
 
         const doc = generateReport({
             testStatus: 'Success',
             failureReason: '-',
-            data1: generateData(5),
-            data2: generateData(5),
-            data3: generateData(5)
+            berMeasurementResult: 'Success',
+            prbsStartTimeAZ: date,
+            prbsEndTimeAZ: date,
+            prbsStartTimeZA: date,
+            prbsEndTimeZA: date,
+            data1: data,
+            data2: data,
+            latencyStartTime: date,
+            latencyEndTime: date,
+            averageLatency: '10',
+            minLatency: '8',
+            maxLatency: '12',
+            data3: data
         })
         doc.save('report.pdf')
     }
