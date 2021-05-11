@@ -59,7 +59,7 @@ const StatusList = StatusListFactory(({select}) =>
 //     <div>active</div>
 //   </div>
 
-const Status = withToggle(({ toggledOn, status, toggle, select }) =>
+const StatusBase = ({ toggledOn, status, toggle, select }) =>
   <span>
     <span onClick={ toggle }>
       { status }
@@ -68,7 +68,19 @@ const Status = withToggle(({ toggledOn, status, toggle, select }) =>
       { toggledOn.s && <StatusList select={ select } /> }
     </span>
   </span>
-)
+
+const Status = withToggle(StatusBase)
+
+//const Status = withToggle(({ toggledOn, status, toggle, select }) =>
+//  <span>
+//    <span onClick={ toggle }>
+//      { status }
+//    </span>
+//    <span>
+//      { toggledOn.s && <StatusList select={ select } /> }
+//    </span>
+//  </span>
+//)
 
 const Tooltip = withToggle(({ show, hide, text, children, toggledOn }) =>
   <span>
