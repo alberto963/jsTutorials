@@ -68,8 +68,7 @@ const MyBigListMemoized = memo(MyBigList)
 render(
   <div>
     <Example />
+    <MyParent term={1000000} />
   </div>,
   document.getElementById('root')
 )
-
-//     <MyParent term={1000000} />
