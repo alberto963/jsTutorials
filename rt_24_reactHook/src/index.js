@@ -108,7 +108,7 @@ const InputFocus = () => {
     // Logs `HTMLInputElement` 
     console.log(`${dt(t0)} InputFocus with inputRef ${inputRef.current} useEffect`)
 
-    // inputRef.current.focus()
+    inputRef.current.focus()
   }, [])
 
   // Logs `undefined` during initial rendering
