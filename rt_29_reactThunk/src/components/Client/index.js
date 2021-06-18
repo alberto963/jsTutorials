@@ -2,7 +2,7 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import { connect } from 'react-redux'
-import { getData } from '../../actions'
+import { getData } from 'actions'
 import { Panel } from './Panel'
 import { ContextProvider } from './Context'
 

@@ -2,8 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { createStore, compose, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
-import reducer from './reducers'
-import Routes from './components/Routes'
+import reducer from 'reducers'
+import Routes from 'Routes'
 import thunk from 'redux-thunk'
 
 // Init Redux with thunk
