@@ -41,9 +41,7 @@ const Parent = (props) => {
         is not a child of the div
         with the onClick handler.
         </p>
-      <Modal>
-        <Child />
-      </Modal>
+      {props.modal ? <Modal><Child /></Modal> : <Child />}
     </div>
   );
 }
@@ -53,7 +51,7 @@ function Child() {
   // even if there is no 'onClick' attribute defined
   return (
     <div className="modal">
-      <button onClick={() => console.info('Button click')}>Click</button>
+      <button>Click</button>
     </div>
   );
 }
