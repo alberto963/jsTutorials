@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
-import { GET_DATA, SET_DATA } from './actions'
-import { decode } from './conf'
+import { GET_DATA, SET_DATA } from 'actions'
+import { decode } from 'conf'
 
 const options = (state = {}, {type, payload}) => {
   switch (type) {

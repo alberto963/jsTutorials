@@ -8,12 +8,12 @@ import Tabs  from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
 import Typography from '@material-ui/core/Typography'
 
-import Client from './Client'
-import Home from './Home'
-import About from './About'
-import NoMatch from './NoMatch'
+import Client from 'components/Client'
+import Home from 'components/Home'
+import About from 'components/About'
+import NoMatch from 'components/NoMatch'
 
-import { panels } from '../conf'
+import { panels } from 'conf'
 
 const useStyles = makeStyles(theme => ({
   root: {
