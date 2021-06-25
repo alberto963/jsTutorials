@@ -1,5 +1,7 @@
-import React, { useState, useEffect, useCallback, memo, useRef } from 'react'
+import React, { useState, useEffect, useCallback, memo,
+   useRef, createRef, forwardRef, useImperativeHandle } from 'react'
 import { render } from 'react-dom'
+import _merge from 'lodash/merge'
 
 const t = () => Math.floor(performance.now() / 1000)
 const dt = t0 => (t() - t0) + ' :: '
@@ -46,7 +48,7 @@ const MyParent = ({ term }) => {
           Click me
       </button>
       <br />
-        <MyBigListMemoized term={term} id={'React.callback and React.memo'} onItemClick={onItemClickCallback} />
+        <MyBigListMemoized term={term} id={'React.callback and React.memo'} onItemClick={onItemClickCallback} />   
 	  </div>
 	  )
 }
@@ -68,11 +70,14 @@ const MyBigListMemoized = memo(MyBigList)
 // https://dmitripavlutin.com/react-useref-guide/
 
 const Stopwatch = () => {
-  const timerIdRef = useRef(0)
+  const timerIdRef = useRef(null)
   const [count, setCount] = useState(0)
 
   const startHandler = () => {
-    if (timerIdRef.current) { return }
+    if (timerIdRef.current) {
+       return 
+    }
+
     timerIdRef.current = setInterval(() => setCount(c => c + 1), 1000)
   }
 
@@ -83,9 +88,7 @@ const Stopwatch = () => {
 
   const resetHandler = () => setCount(0)
   
-  useEffect(() => {
-    return () => clearInterval(timerIdRef.current)
-  }, [])
+  useEffect(() => () => clearInterval(timerIdRef.current), []) // On unmount clear timer
 
   console.log(`${dt(t0)} Stopwatch with timerIdRef ${timerIdRef.current} renders`)
 
@@ -101,6 +104,7 @@ const Stopwatch = () => {
   )
 }
 
+// useRef
 const InputFocus = () => {
   const inputRef = useRef()
 
@@ -117,11 +121,88 @@ const InputFocus = () => {
   return <input ref={inputRef} type="text" />
 }
 
+// forwardRef
+const Base = (props) => <div {...props} ref={props.forwardedref}>Base Component</div>
+const withWrap = C => forwardRef((props, ref) => <C {...props} forwardedref={ref} />)
+const WrappedBase = withWrap(Base)
+
+const MyBase = () => {
+  const ref = createRef()  // NOTE: createRef, not useRef!!!
+  // createRef will return a new ref on every render while useRef will return the same ref each time.
+  // useRef returns a mutable ref object whose . current property is initialized to the passed argument
+  // (initialValue). The returned object will persist for the full lifetime of the component
+
+  // console.log(`${dt(t0)} MyBase with ref current ${ref.current}`)
+
+  useEffect(() => {
+    // Logs `HTMLDivElement` 
+    console.log(`${dt(t0)} MyBase with ref current ${ref.current} useEffect`)
+
+    ref.current.style = 'color:red'
+  }, [])
+
+  return <WrappedBase ref={ref} />
+}
+
+// forwardRef2
+const Base2 = forwardRef((props, ref) => <div {...props} ref={ref}>Base2 Component</div>)
+Base2.displayName = 'Base2'
+
+const MyBase2 = (props) => {
+  const ref = useRef()  
+  // console.log(`${dt(t0)} MyBase2 with ref current ${ref.current}`)
+
+  useEffect(() => {
+    // Logs `HTMLDivElement` 
+    console.log(`${dt(t0)} MyBase2 with ref current ${ref.current} useEffect`)
+    // console.log(`${dt(t0)} MyBase2 with ref current style ${ref.current.style} useEffect`)
+
+    // ref.current.style = 'font-size:24px;color:green;'  // OK
+    ref.current.style.color = 'green'
+    ref.current.style.fontSize = '24px'
+    // ref.current.style = {...ref.current.style, color: 'green'} DOES NOT WORK!!!
+    console.log('MyBase2 current style=', ref.current.style)
+  }, [])
+
+  return <Base2 {...props} style={{height:'100px', width:'300px', border: 'solid 1px black'}} ref={ref} />
+}
+
+// forwardRef3 and useImperativehandle
+const Base3 = forwardRef((props, ref) => {
+  const base3Ref = createRef()
+  useImperativeHandle(ref, () => _merge({}, {
+    custom: () => {
+      console.log('Base3 custom called useImperativeHandle ref=', ref.current)
+      console.log(`${dt(t0)} Base3 with ref current ${ref.current} useImperativeHandle`)
+
+      console.log('Base3 custom called base3Ref=', base3Ref.current)
+      console.log(`${dt(t0)} Base3 with base3Ref current ${base3Ref.current} useImperativeHandle`)
+    }
+  }, base3Ref.current))
+  return <div {...props} ref={base3Ref}>Base3 Component</div>
+})
+Base3.displayName = 'Base3'
+
+const MyBase3 = (props) => {
+  const ref = useRef()  
+
+  useEffect(() => {
+    ref.current.custom()
+    ref.current.style.color = 'indigo'
+
+  }, [])
+
+  return <Base3 {...props} style={{height:'150px', width:'100px', border: 'solid 1px black'}} ref={ref} />
+}
+
 render(
   <div>
     <Example />
     <Stopwatch />
     <InputFocus />
+    <MyBase />
+    <MyBase2 style={{color: 'blu'}} />
+    <MyBase3 />
     <MyParent term={10} /> {/* To see effects, use 1000000 as term value */}
   </div>,
   document.getElementById('root')
