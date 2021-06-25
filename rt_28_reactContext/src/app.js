@@ -11,7 +11,7 @@ const App = () => {
 
   return (
     <div>
-      <button className={'btn btn-lg'} onClick={useCallback(() => setC(toggleC), [c])}>>
+      <button className={'btn btn-lg'} onClick={useCallback(() => setC(toggleC), [c])}>
         Change context
       </button>
       <div>
