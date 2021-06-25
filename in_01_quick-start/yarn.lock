@@ -1381,8 +1381,8 @@ async-each@^1.0.0:
   resolved "https://registry.yarnpkg.com/async-each/-/async-each-1.0.1.tgz#19d386a1d9edc6e7c1c85d388aedbcc56d33602d"
 
 async-limiter@~1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/async-limiter/-/async-limiter-1.0.0.tgz#78faed8c3d074ab81f22b4e985d79e8738f720f8"
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/async-limiter/-/async-limiter-1.0.1.tgz#dd379e94f0db8310b08291f9d64c3209766617fd"
 
 async@^1.5.2:
   version "1.5.2"
@@ -4264,21 +4264,21 @@ inferno-scripts@7.0.4:
   optionalDependencies:
     fsevents "2.0.1"
 
-inferno-shared@7.1.10:
-  version "7.1.10"
-  resolved "http://138.120.119.175:8081/artifactory/api/npm/alu-npm-virtual/inferno-shared/-/inferno-shared-7.1.10.tgz#8f835bdeda5226f5ef9ba60b848b4d252f8fa89d"
+inferno-shared@7.4.8:
+  version "7.4.8"
+  resolved "https://registry.yarnpkg.com/inferno-shared/-/inferno-shared-7.4.8.tgz#2b554a36683b770339008749096d9704846dd337"
 
-inferno-vnode-flags@7.1.10:
-  version "7.1.10"
-  resolved "http://138.120.119.175:8081/artifactory/api/npm/alu-npm-virtual/inferno-vnode-flags/-/inferno-vnode-flags-7.1.10.tgz#4731f2f71c4f50d9d9533562ea9ab3cd2c0efc0f"
+inferno-vnode-flags@7.4.8:
+  version "7.4.8"
+  resolved "https://registry.yarnpkg.com/inferno-vnode-flags/-/inferno-vnode-flags-7.4.8.tgz#275d70e3c8b2b3f4eb56041cc9b8c832ce1fb26d"
 
-inferno@7.1.10:
-  version "7.1.10"
-  resolved "http://138.120.119.175:8081/artifactory/api/npm/alu-npm-virtual/inferno/-/inferno-7.1.10.tgz#826a3bc7482a2567b3ac53cd25fb736ca98d3219"
+inferno@^7.1.10:
+  version "7.4.8"
+  resolved "https://registry.yarnpkg.com/inferno/-/inferno-7.4.8.tgz#0d5504753e79903b0e4bbeff76fc11fd0b9ffe92"
   dependencies:
-    inferno-shared "7.1.10"
-    inferno-vnode-flags "7.1.10"
-    opencollective-postinstall "^2.0.2"
+    inferno-shared "7.4.8"
+    inferno-vnode-flags "7.4.8"
+    opencollective-postinstall "^2.0.3"
 
 inflight@^1.0.4:
   version "1.0.6"
@@ -5930,9 +5930,9 @@ onetime@^2.0.0:
   dependencies:
     mimic-fn "^1.0.0"
 
-opencollective-postinstall@^2.0.2:
-  version "2.0.2"
-  resolved "http://138.120.119.175:8081/artifactory/api/npm/alu-npm-virtual/opencollective-postinstall/-/opencollective-postinstall-2.0.2.tgz#5657f1bede69b6e33a45939b061eb53d3c6c3a89"
+opencollective-postinstall@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/opencollective-postinstall/-/opencollective-postinstall-2.0.3.tgz#7a0fff978f6dbfa4d006238fbac98ed4198c3259"
 
 opn@5.4.0, opn@^5.1.0:
   version "5.4.0"
@@ -8786,8 +8786,8 @@ write@^0.2.1:
     mkdirp "^0.5.1"
 
 ws@^5.2.0:
-  version "5.2.2"
-  resolved "https://registry.yarnpkg.com/ws/-/ws-5.2.2.tgz#dffef14866b8e8dc9133582514d1befaf96e980f"
+  version "5.2.3"
+  resolved "https://registry.yarnpkg.com/ws/-/ws-5.2.3.tgz#05541053414921bc29c63bee14b8b0dd50b07b3d"
   dependencies:
     async-limiter "~1.0.0"
 
