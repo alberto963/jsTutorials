@@ -4264,21 +4264,21 @@ inferno-scripts@7.0.4:
   optionalDependencies:
     fsevents "2.0.1"
 
-inferno-shared@7.1.10:
-  version "7.1.10"
-  resolved "http://138.120.119.175:8081/artifactory/api/npm/alu-npm-virtual/inferno-shared/-/inferno-shared-7.1.10.tgz#8f835bdeda5226f5ef9ba60b848b4d252f8fa89d"
+inferno-shared@7.4.10:
+  version "7.4.10"
+  resolved "https://registry.yarnpkg.com/inferno-shared/-/inferno-shared-7.4.10.tgz#d4ca2c7fd6b580f86a623e923d080aa1d7259014"
 
-inferno-vnode-flags@7.1.10:
-  version "7.1.10"
-  resolved "http://138.120.119.175:8081/artifactory/api/npm/alu-npm-virtual/inferno-vnode-flags/-/inferno-vnode-flags-7.1.10.tgz#4731f2f71c4f50d9d9533562ea9ab3cd2c0efc0f"
+inferno-vnode-flags@7.4.10:
+  version "7.4.10"
+  resolved "https://registry.yarnpkg.com/inferno-vnode-flags/-/inferno-vnode-flags-7.4.10.tgz#a255931fc1df1e6896b29226d837f28e1c5ac968"
 
-inferno@7.1.10:
-  version "7.1.10"
-  resolved "http://138.120.119.175:8081/artifactory/api/npm/alu-npm-virtual/inferno/-/inferno-7.1.10.tgz#826a3bc7482a2567b3ac53cd25fb736ca98d3219"
+inferno@^7.1.10:
+  version "7.4.10"
+  resolved "https://registry.yarnpkg.com/inferno/-/inferno-7.4.10.tgz#edfeca0db7dd1790aaf60e6aaf7edae8fe97dc63"
   dependencies:
-    inferno-shared "7.1.10"
-    inferno-vnode-flags "7.1.10"
-    opencollective-postinstall "^2.0.2"
+    inferno-shared "7.4.10"
+    inferno-vnode-flags "7.4.10"
+    opencollective-postinstall "^2.0.3"
 
 inflight@^1.0.4:
   version "1.0.6"
@@ -5930,9 +5930,9 @@ onetime@^2.0.0:
   dependencies:
     mimic-fn "^1.0.0"
 
-opencollective-postinstall@^2.0.2:
-  version "2.0.2"
-  resolved "http://138.120.119.175:8081/artifactory/api/npm/alu-npm-virtual/opencollective-postinstall/-/opencollective-postinstall-2.0.2.tgz#5657f1bede69b6e33a45939b061eb53d3c6c3a89"
+opencollective-postinstall@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/opencollective-postinstall/-/opencollective-postinstall-2.0.3.tgz#7a0fff978f6dbfa4d006238fbac98ed4198c3259"
 
 opn@5.4.0, opn@^5.1.0:
   version "5.4.0"
@@ -8118,8 +8118,8 @@ tmp@^0.0.33:
     os-tmpdir "~1.0.2"
 
 tmpl@1.0.x:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/tmpl/-/tmpl-1.0.4.tgz#23640dd7b42d00433911140820e5cf440e521dd1"
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/tmpl/-/tmpl-1.0.5.tgz#8683e0b902bb9c20c4f726e3c0b69f36518c07cc"
 
 to-arraybuffer@^1.0.0:
   version "1.0.1"
