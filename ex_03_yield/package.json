@@ -1,0 +1,17 @@
+{
+  "name": "ex_03_yield",
+  "version": "1.0.0",
+  "description": "ex_03: This project was created from scratch",
+  "main": "index.js",
+  "dependencies": {
+    "nodemon": "^2.0.12"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon --exec npm start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
