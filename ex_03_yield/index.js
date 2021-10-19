@@ -139,7 +139,7 @@ const sequentialFunction = () => {
   const run = (generator, executorResult) => {
     const g = !executorResult ? generator() : generator
     const generatorResult = g.next(executorResult)
-    !generatorResult.done && generatorResult.value.then((result) => run(g, result))
+    !generatorResult.done && generatorResult.value.then(result => run(g, result))
   }
 
   function* callSequence() {
