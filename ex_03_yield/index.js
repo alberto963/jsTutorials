@@ -131,9 +131,17 @@ const asynchFunction = () => {
 
 // Solution
 
-const setAsynch = () => new Promise(resolve => setTimeout(() => resolve(true), 2500))
-
 const sequentialFunction = () => {
+  const setAsynch = () => new Promise(resolve => setTimeout(() => resolve(true), 2500))
+
+  // The next() method also accepts a value, which can be used to modify the internal state of the generator.
+  // A value passed to next() will be received by yield.
+  const run = (generator, executorResult) => {
+    const g = !executorResult ? generator() : generator
+    const generatorResult = g.next(executorResult)
+    !generatorResult.done && generatorResult.value.then((result) => run(g, result))
+  }
+
   function* callSequence() {
     const r0 = yield setAsynch()
     r0 && console.log('sequentialFunction: Hello World!')
@@ -141,16 +149,29 @@ const sequentialFunction = () => {
     const r1 = yield setAsynch()
     r1 && console.log('sequentialFunction: Hello World Again!')
   }
-  generatorExecutor(callSequence)
+  run(callSequence)
 }
 
-// The next() method also accepts a value, which can be used to modify the internal state of the generator.
-// A value passed to next() will be received by yield.
-const generatorExecutor = (generator, executorResult) => {
-  const g = !executorResult ? generator() : generator
-  const generatorResult = g.next(executorResult)
-  !generatorResult.done && generatorResult.value.then((result) => generatorExecutor(g, result))
-}
+
 
 console.log('Solution: sequentialFunction with generators and Promise ========================================')
 sequentialFunction()
+
+// 7) ----------------------------------------------------------------------------------------------------------
+console.log('\nExercise: using async and await ===============================================================')
+
+const asynchSequence = async () => {
+  const setAsynch = () => new Promise(resolve => setTimeout(() => resolve(true), 2500))
+
+  try {
+    const r0 = await setAsynch()
+    r0 && console.log('asynchFunction: Hello World!')
+
+    const r1 = await setAsynch()
+    r1 && console.log('asynchFunction: Hello World Again!')
+  }
+  catch(e) {
+    console.error(e)
+  }
+}
+asynchSequence()
