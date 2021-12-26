@@ -1,0 +1,5 @@
+const foo = { bar: {z: {t: 9} }, baz: 12 };
+const { bar: {z: y}, baz } = foo; 
+console.log(y); // expected output: Object { t: 9 }
+//console.log(bar);
+console.log(baz); // expected output: 12
