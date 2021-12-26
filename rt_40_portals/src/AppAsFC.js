@@ -41,7 +41,7 @@ const Parent = (props) => {
         is not a child of the div
         with the onClick handler.
         </p>
-      {props.modal ? <Modal><Child /></Modal> : <Child />}
+        {props.modal ? <Modal><Child /></Modal> : <Child />}
     </div>
   );
 }
