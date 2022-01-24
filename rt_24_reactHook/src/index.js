@@ -301,15 +301,33 @@ const TypeExp = () => {
   
   const [chars, setChars] = useState('')
 
-  useEffect(useCallback(() => {
+  useEffect(() => {
     window.addEventListener('keypress', setChars);
 
     return () => window.removeEventListener('keypress', setChars);
-  }, [chars]), [])
+  }, [])
 
   return <div>
     <h2>Type here</h2>
     <span>{chars.key}</span>
+  </div>
+}
+
+const TypeExp2 = () => {
+  
+  const [chars, setChars] = useState('x')
+
+  const getKey = useCallback((e) => setChars(`${chars} ${e.key}`))
+
+  useEffect(() => {
+    window.addEventListener('keypress', getKey);
+
+    return () => window.removeEventListener('keypress', getKey);
+  }, [])
+
+  return <div>
+    <h2>Type here</h2>
+    <span>{chars}</span>
   </div>
 }
 
@@ -325,7 +343,7 @@ render(
     <MyBase5 />
     <MyBase6 />
     <MyParent term={10} /> {/* To see effects, use 1000000 as term value */}
-    <TypeExp />
+    <TypeExp2 />
   </div>,
   document.getElementById('root')
 )
