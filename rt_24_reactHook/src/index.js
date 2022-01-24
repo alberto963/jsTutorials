@@ -195,6 +195,124 @@ const MyBase3 = (props) => {
   return <Base3 {...props} style={{height:'150px', width:'100px', border: 'solid 1px black'}} ref={ref} />
 }
 
+// forwardRef4 
+const Base4 = forwardRef((props, ref) => {
+  const base4Props = {
+    style: {color: 'blue', height:'200px', width:'200px', padding:'50px', margin:'10px', border: 'solid 1px black'}
+  }
+
+  const base4InnerProps = {
+    style: {color: 'red', height:'150px', width:'100px', border: 'solid 1px black'}
+  }
+
+  return <div {...base4Props} ref={ref} >
+    Base4 Component
+    <div {...base4InnerProps} {...props} ref={props.innerref}>Base4 Inner Component</div>
+  </div>
+})
+Base4.displayName = 'Base4'
+
+const MyBase4 = (props) => {
+  const ref = createRef()
+  const innerRef = createRef()
+  
+  useEffect(() => {
+    ref.current.style.color = 'green'
+    innerRef.current.style.color = 'yellow'
+  }, [])
+
+  return <Base4 {...props} innerref={innerRef} ref={ref} />
+}
+
+// forwardRef5 and useImperativehandle: il ref interno lo crea il componente che tramite useImperativehandle lo rende disponibile al padre
+const Base5 = forwardRef((props, ref) => {
+  const baseRef = createRef()
+  const innerRef = createRef()
+
+  const base5Props = {
+    style: {color: 'red', height:'200px', width:'200px', padding:'50px', margin:'10px', border: 'solid 1px black'}
+  }
+
+  const base5InnerProps = {
+    style: {color: 'red', height:'150px', width:'100px', border: 'solid 1px black'}
+  }
+
+  useImperativeHandle(ref, () => ({
+    baseRef,
+    innerRef,
+  }), [])
+
+  return <div {...base5Props} ref={baseRef} >
+    Base5 Component
+    <div {...base5InnerProps} {...props} ref={innerRef}>Base5 Inner Component</div>
+  </div>
+})
+Base5.displayName = 'Base5'
+
+const MyBase5 = (props) => {
+  const ref = useRef()
+  
+  useEffect(() => {
+      ref.current.baseRef.current.style.color = 'green'
+      ref.current.innerRef.current.style.color = 'orange'
+  })
+
+  return <Base5 {...props} ref={ref} />
+}
+
+// usa la set di una use state per creare il ref => NON FUNZIONA, non sono riuscito a settare i current 
+const Base6 = forwardRef((props, ref) => {
+  const [baseRef, setBaseRef] = useState(createRef());
+  const [innerRef, setInnerRef] = useState(createRef());
+
+  const base5Props = {
+    style: {color: 'red', height:'200px', width:'200px', padding:'50px', margin:'10px', border: 'solid 1px black'}
+  }
+
+  const base5InnerProps = {
+    style: {color: 'red', height:'150px', width:'100px', border: 'solid 1px black'}
+  }
+
+  useImperativeHandle(ref, () => ({
+    baseRef,
+    innerRef,
+  }), [])
+
+  return <div {...base5Props} ref={setBaseRef} >
+    Base6 Component
+    <div {...base5InnerProps} {...props} ref={setInnerRef}>Base6 Inner Component</div>
+  </div>
+})
+Base5.displayName = 'Base6'
+
+const MyBase6 = (props) => {
+  const ref = useRef()
+  
+  useEffect(() => {
+    console.log(ref.current)
+      // ref.current.baseRef.current.style.color = 'green'
+      // ref.current.innerRef.current.style.color = 'orange'
+  }, [])
+
+  return <Base6 {...props} ref={ref} />
+}
+
+const TypeExp = () => {
+  
+  const [chars, setChars] = useState('')
+
+  useEffect(useCallback(() => {
+    window.addEventListener('keypress', setChars);
+
+    return () => window.removeEventListener('keypress', setChars);
+  }, [chars]), [])
+
+  return <div>
+    <h2>Type here</h2>
+    <span>{chars.key}</span>
+  </div>
+}
+
 render(
   <div>
     <Example />
@@ -203,7 +321,11 @@ render(
     <MyBase />
     <MyBase2 style={{color: 'blu'}} />
     <MyBase3 />
+    <MyBase4 />
+    <MyBase5 />
+    <MyBase6 />
     <MyParent term={10} /> {/* To see effects, use 1000000 as term value */}
+    <TypeExp />
   </div>,
   document.getElementById('root')
 )
