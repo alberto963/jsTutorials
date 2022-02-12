@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from "react"
-import { render } from 'react-dom'
 
 const TestWithManualRef = (props) => {
 	const [count, setCount] = useState(0);
