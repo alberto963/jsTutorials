@@ -14,7 +14,7 @@ const listItem = ({id, url, title}) =>
   </li>
 
 const list = data =>
-  <div class='list'>
+  <div className='list'>
     <ul>{data.map(item => listItem(item))}</ul>
   </div>
 	
@@ -30,7 +30,7 @@ const App = () => {
 	const posts = useHttpService(HTTP_SERVICE_POSTS)
 
 	return (
-		<div class='container'>
+    <div className='container'>
       {list(todos)}
       {list(posts)}
     </div>)
