@@ -24,7 +24,10 @@ const useHttpService = service => {
   // Correct, but no error handling
   // useEffect(() => invoke(async () => setData((await axios(service)).data)), [service])
 
-  // Error Handling, correct but no catch in error boundary component (not undestood why)
+  // Error Handling, correct but no catch in error boundary component
+  // NOTE: 17.2 react doc in Error Boundaries paragraph says: 
+  // Error boundaries do not catch errors for: Asynchronous code (e.g. setTimeout or requestAnimationFrame callbacks))
+  // This can be the reason as getData axios call is async
   const throwError = error => { throw new Error(error) }
   useEffect(() => invoke(async () => setData((await axios(service).catch(throwError)).data)), [service])
 
