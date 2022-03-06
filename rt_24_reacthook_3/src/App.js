@@ -8,7 +8,7 @@ const HTTP_SERVICE_POSTS = "https://jsonplaceholder.typicode.com/posts"
 
 const invoke = f => (f)()
 
-const listItem = ({id, url, title}) => 
+const listItem = ({ id, url, title }) =>
   <li key={id}>
     <a href={url}>{title}</a>
   </li>
@@ -17,19 +17,49 @@ const list = data =>
   <div className='list'>
     <ul>{data.map(item => listItem(item))}</ul>
   </div>
-	
-const useHttpService = service => {
-	const [data, setData] = useState([])
-	useEffect(() => invoke(async () => setData((await axios(service)).data)), [service])
 
-	return data
+const useHttpService = service => {
+  const [data, setData] = useState([])
+
+  // Correct, but no error handling
+  // useEffect(() => invoke(async () => setData((await axios(service)).data)), [service])
+
+  // Error Handling, correct but no catch in error boundary component (not undestood why)
+  const throwError = error => { throw new Error(error) }
+  useEffect(() => invoke(async () => setData((await axios(service).catch(throwError)).data)), [service])
+
+  // Uncomment the following to see AppError component being rendered (because of js error of wrong data returned to list)
+  // useEffect(() => invoke(async () => setData((await axios(service).catch(throwError)))), [service])
+
+  // Uncomment to simulate a wrong URL requested, I expected to catch the error in AppError, but no componentDidCatch is called
+  // useEffect(() => invoke(async () => setData((await axios(service + 'WRONG').catch(throwError)).data)), [service])
+
+  // Expanded version of above with try catch (NOTE: 'await axios(service)' is simplification of 'await axios.get(service)')
+  // Even if with try/catch no componentDidCatch is called in AppError
+
+  // useEffect(() => {
+  //   const getData = async service => {
+  //     try {
+  //       const response = await axios.get(service);
+  //       return response.data
+  //     } catch (error) {
+  //       throwError(error);
+  //     }
+  //   }
+  //   invoke(async () => {
+  //     const d = await getData(service)
+  //     setData(d)
+  //   })
+  // }, [service])
+
+  return data
 }
 
 const App = () => {
-	const todos = useHttpService(HTTP_SERVICE_TODOS)
-	const posts = useHttpService(HTTP_SERVICE_POSTS)
+  const todos = useHttpService(HTTP_SERVICE_TODOS)
+  const posts = useHttpService(HTTP_SERVICE_POSTS)
 
-	return (
+  return (
     <div className='container'>
       {list(todos)}
       {list(posts)}
