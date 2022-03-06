@@ -34,9 +34,12 @@ const useHttpService = service => {
   // Uncomment the following to see AppError component being rendered (because of js error of wrong data returned to list)
   // useEffect(() => invoke(async () => setData((await axios(service).catch(throwError)))), [service])
 
-  // Uncomment to simulate a wrong URL requested, I expected to catch the error in AppError, but no componentDidCatch is called
+  // Uncomment to simulate a wrong URL requested, I expected to catch the error in AppError, but no componentDidCatch is called, see explaination above about react doc 17.2
   // useEffect(() => invoke(async () => setData((await axios(service + 'WRONG').catch(throwError)).data)), [service])
 
+  // NOTE: to see the error boundary being rendered, block in the browser inspector network tab the required (lazy) file http://localhost:3000/static/js/src_App_js.chunk.js
+  // This will trigger the boundary as explained in react documentation
+  
   // Expanded version of above with try catch (NOTE: 'await axios(service)' is simplification of 'await axios.get(service)')
   // Even if with try/catch no componentDidCatch is called in AppError
 
