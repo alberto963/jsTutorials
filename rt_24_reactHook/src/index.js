@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, memo,
-   useRef, createRef, forwardRef, useImperativeHandle, Component } from 'react'
+   useRef, createRef, forwardRef, useImperativeHandle } from 'react'
 import { render } from 'react-dom'
 import _merge from 'lodash/merge'
 
@@ -164,7 +164,7 @@ const MyBase2 = (props) => {
     console.log('MyBase2 current style=', ref.current.style)
   }, [])
 
-  return <Base2 {...props} style={{height:'50px', width:'300px', border: 'solid 1px black'}} ref={ref} />
+  return <Base2 {...props} style={{height:'100px', width:'300px', border: 'solid 1px black'}} ref={ref} />
 }
 
 // forwardRef3 and useImperativehandle
@@ -192,17 +192,17 @@ const MyBase3 = (props) => {
 
   }, [])
 
-  return <Base3 {...props} style={{height:'50px', width:'100px', border: 'solid 1px black'}} ref={ref} />
+  return <Base3 {...props} style={{height:'150px', width:'100px', border: 'solid 1px black'}} ref={ref} />
 }
 
 // forwardRef4 
 const Base4 = forwardRef((props, ref) => {
   const base4Props = {
-    style: {color: 'blue', height:'50px', width:'200px', padding:'25px', margin:'10px', border: 'solid 1px black'}
+    style: {color: 'blue', height:'200px', width:'200px', padding:'50px', margin:'10px', border: 'solid 1px black'}
   }
 
   const base4InnerProps = {
-    style: {color: 'red', height:'50px', width:'100px', border: 'solid 1px black'}
+    style: {color: 'red', height:'150px', width:'100px', border: 'solid 1px black'}
   }
 
   return <div {...base4Props} ref={ref} >
@@ -230,11 +230,11 @@ const Base5 = forwardRef((props, ref) => {
   const innerRef = createRef()
 
   const base5Props = {
-    style: {color: 'red', height:'50px', width:'200px', padding:'25px', margin:'10px', border: 'solid 1px black'}
+    style: {color: 'red', height:'200px', width:'200px', padding:'50px', margin:'10px', border: 'solid 1px black'}
   }
 
   const base5InnerProps = {
-    style: {color: 'red', height:'50px', width:'100px', border: 'solid 1px black'}
+    style: {color: 'red', height:'150px', width:'100px', border: 'solid 1px black'}
   }
 
   useImperativeHandle(ref, () => ({
@@ -265,12 +265,12 @@ const Base6 = forwardRef((props, ref) => {
   const [baseRef, setBaseRef] = useState(createRef());
   const [innerRef, setInnerRef] = useState(createRef());
 
-  const base5Props = {
-    style: {color: 'red', height:'50px', width:'200px', padding:'25px', margin:'10px', border: 'solid 1px black'}
+  const base6Props = {
+    style: {color: 'red', height:'200px', width:'200px', padding:'50px', margin:'10px', border: 'solid 1px black'}
   }
 
-  const base5InnerProps = {
-    style: {color: 'red', height:'50px', width:'100px', border: 'solid 1px black'}
+  const base6InnerProps = {
+    style: {color: 'red', height:'150px', width:'100px', border: 'solid 1px black'}
   }
 
   useImperativeHandle(ref, () => ({
@@ -278,12 +278,12 @@ const Base6 = forwardRef((props, ref) => {
     innerRef,
   }), [])
 
-  return <div {...base5Props} ref={setBaseRef} >
+  return <div {...base6Props} ref={setBaseRef} >
     Base6 Component
-    <div {...base5InnerProps} {...props} ref={setInnerRef}>Base6 Inner Component</div>
+    <div {...base6InnerProps} {...props} ref={setInnerRef}>Base6 Inner Component</div>
   </div>
 })
-Base5.displayName = 'Base6'
+Base6.displayName = 'Base6'
 
 const MyBase6 = (props) => {
   const ref = useRef()
@@ -295,6 +295,46 @@ const MyBase6 = (props) => {
   }, [])
 
   return <Base6 {...props} ref={ref} />
+}
+
+const Base7 = forwardRef((props, ref) => {
+
+  const base7Props = {
+    style: {color: 'red', height:'200px', width:'200px', padding:'50px', margin:'10px', border: 'solid 1px black'}
+  }
+
+  const base7InnerProps = {
+    style: {color: 'red', height:'150px', width:'100px', border: 'solid 1px black'}
+  }
+
+  const innerRef = useRef()
+
+  useImperativeHandle(ref, () => {
+    return {
+      custom: () => console.info('CUSTOM CALLED'),
+      innerRef
+    }
+  })
+
+  return <div {...base7Props} >
+    Base7 Component
+    <div {...base7InnerProps} {...props} ref={innerRef}>Base7 Inner Component</div>
+  </div>
+})
+Base7.displayName = 'Base7'
+
+const MyBase7 = (props) => {
+  const ref = useRef()
+  
+  useEffect(() => {
+    console.log(ref.current)
+    if (ref && ref.current) {
+      ref.current.custom()
+      ref.current.innerRef.current.style.color = 'green'
+    }
+  })
+
+  return <Base7 {...props} ref={ref} />
 }
 
 const TypeExp = () => {
@@ -316,84 +356,18 @@ const TypeExp = () => {
 const TypeExp2 = () => {
   
   const [chars, setChars] = useState('x')
-  console.log(chars)
 
-  const setKey = useCallback((e) => setChars(`${chars} ${e.key}`))
+  const getKey = useCallback((e) => setChars(`${chars} ${e.key}`))
 
   useEffect(() => {
-    window.addEventListener('keypress', setKey);
+    window.addEventListener('keypress', getKey);
 
-    return () => window.removeEventListener('keypress', setKey);
+    return () => window.removeEventListener('keypress', getKey);
   }, [])
 
   return <div>
     <h2>Type here</h2>
     <span>{chars}</span>
-  </div>
-}
-
-const MyFunctionComponent = () => {
-
-  const [state, setState] = useState('x')
-
-  const myRef0 = createRef(0) // Not to be used in functional components, use useRef and forwardRef (+useImperativeHandle)
-  const myRef1 = useRef(1)
-
-  console.log(myRef0)
-
-  useEffect(() => console.log(myRef0), [state])
-
-  return (
-    <div style={{margin: '25px', width: '200px', border: 'solid 1px black'}}>
-      <div ref={myRef0}>Value 0: {myRef0.current}</div>
-      <div>Value 1: {myRef1.current}</div>
-      <div>State: {state}</div>
-      <button onClick={() => setState(`${state}B`)}>Change Value</button>
-    </div>
-    )
-}
-
-class MyComponent extends Component {
-  constructor(props) {
-    super(props);
-    this.myRef = createRef(); // No meaning to initialize it ? ref receives the underlying DOM element as its current property when used in an HTML element. 
-  }
-
-  componentDidMount() {
-    this.myRef.current.style.background = 'green';
-  }
-
-  render() {
-    return <div ref={this.myRef}>Value</div>;
-  }
-}
-
-const TestUseStatePrev = () => {
-  
-  const [chars1, setChars1] = useState('1')
-  const [chars2, setChars2] = useState('2')
-  console.log('chars1: ', chars1)
-  console.log('chars2: ', chars2)
-
-  const [count, setCount] = useState(0)
-
-  const setKey1 = (e) => setChars1(`${chars1} ${e.key}`) // Does not add new characters to chars (with eventListener)
-  const setKey2 = (e) => setChars2(`${chars2} ${e.key}`) // It does add new characters to chars (with onClick)
-
-  useEffect(() => {
-    window.addEventListener('keydown', setKey1);
-
-    return () => window.removeEventListener('keydown', setKey1);
-  }, [])
-
-  return <div>
-    <h2>Type here to change chars1 value</h2>
-    <div>chars1: {chars1}</div>
-    <button onClick={() => setKey2({key: 'X'})}>Change chars2 Value</button>
-    <div>chars2: {chars2}</div>
-    <button onClick={() => setCount(count + 1)}>Inc count</button>
-    <button onClick={() => setCount((p) => p + 1)}>Inc prev count</button>
-    <div>count: {count}</div>
   </div>
 }
 
@@ -408,11 +382,9 @@ render(
     <MyBase4 />
     <MyBase5 />
     <MyBase6 />
-    <MyParent term={1} /> {/* To see effects, use 1000000 as term value */}
+    <MyBase7 />
+    <MyParent term={10} /> {/* To see effects, use 1000000 as term value */}
     <TypeExp2 />
-    <MyFunctionComponent />
-    <MyComponent />
-    <TestUseStatePrev />
   </div>,
   document.getElementById('root')
 )
