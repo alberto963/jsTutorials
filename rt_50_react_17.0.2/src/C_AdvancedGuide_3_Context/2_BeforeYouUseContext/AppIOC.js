@@ -1,19 +1,21 @@
 import './App.css'
 
-const Link = (props) =>
+const Link = props =>
     <div className='App'>
         {props.children}
         <a href={props.href}>The Anchor element</a>
     </div>
 
-const Avatar = (props) =>
+const Avatar = props =>
     <img src={props.user} alt='Avatar' className='avatar' style={{ width: props.size, height: props.size }} />
 
-const NavigatorBar = (props) => props.userLink
+const NavigatorBar = props =>
+    props.userLink
 
-const PageLayout = (props) => <NavigatorBar userLink={props.userLink} />
+const PageLayout = props =>
+    <NavigatorBar userLink={props.userLink} />
 
-const Page = (props) => {
+const Page = props => {
     const userLink =
         <Link href={props.user}>
             <Avatar user={props.user} size={props.size} />
