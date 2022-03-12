@@ -1,14 +1,14 @@
 import { Component } from 'react'
 
-import './App.css'
-import { AppContext } from './AppContext'
+import './0_App.css'
+import { AppContext } from './0_AppContext'
 
 class Link extends Component {
     render() {
         return (
             <div className='App'>
                 {this.props.children}
-                <a href={this.props.href}>The Anchor element</a>
+                <a href={this.props.href}>The Anchor element 1</a>
             </div>)
     }
 }

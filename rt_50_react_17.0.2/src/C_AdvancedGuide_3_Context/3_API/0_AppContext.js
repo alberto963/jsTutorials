@@ -1,6 +1,6 @@
 import { createContext } from 'react'
 
-const defaultValue = { user: 'logo192.png', size: 25 }
+const defaultValue = { user: 'logo192.png', size: 25, updateSize: () => { } }
 export const AppContext = createContext(defaultValue)
 
 /* FROM REACT DOC:
@@ -9,3 +9,7 @@ export const AppContext = createContext(defaultValue)
 
     NOTE: passing undefined as a Provider value does not cause consuming components to use defaultValue.
 */
+
+// The following are used for multiple context
+export const AppUserContext = createContext('logo192.png')
+export const AppSizeContext = createContext(25)

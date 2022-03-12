@@ -1,9 +1,13 @@
 import React, { StrictMode } from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import './index.css';
-import { AppContext } from './C_AdvancedGuide_3_Context/3_API/AppContext';
-import App from './C_AdvancedGuide_3_Context/3_API/App';
-
+import { AppContext, AppUserContext, AppSizeContext } from './C_AdvancedGuide_3_Context/3_API/0_AppContext';
+import App from './C_AdvancedGuide_3_Context/3_API/1_App';
+import AppFC from './C_AdvancedGuide_3_Context/3_API/2_AppFC';
+import AppFCUpdatingFromNested from './C_AdvancedGuide_3_Context/3_API/3_AppFCUpdatingFromNested';
+import AppFCMultipleContext from './C_AdvancedGuide_3_Context/3_API/4_AppFCMultipleContext';
+import AppFCCaveatsGotches from './C_AdvancedGuide_3_Context/3_API/5_AppFCCaveatsGotches';
+import AppFCCaveatGotchesElementaryContext from './C_AdvancedGuide_3_Context/3_API/6_AppFCCaveatGotchesElementaryContext';
 import reportWebVitals from './reportWebVitals';
 
 /* FROM REACT DOC:
@@ -21,15 +25,60 @@ import reportWebVitals from './reportWebVitals';
       <App />
     </AppContext.Provider>
 
-    On the other way, not wrapping <app /> with AppContext.Provider will result in default values to be used (see comment below)
+    On the other way, not wrapping <App /> with AppContext.Provider will result in default values to be used (see comment below)
 */
-ReactDOM.render(
+
+render(
+  <StrictMode>
+    <AppFCCaveatGotchesElementaryContext />
+  </StrictMode>,
+  document.getElementById('root6')
+);
+
+render(
+  <StrictMode>
+    <AppFCCaveatsGotches />
+  </StrictMode>,
+  document.getElementById('root5')
+);
+
+// For AppFCMultipleContext
+render(
+  <StrictMode>
+    <AppUserContext.Provider value={'logo512.png'} >
+      <AppSizeContext.Provider value={50} >
+        <AppFCMultipleContext />
+      </AppSizeContext.Provider>
+    </AppUserContext.Provider>
+  </StrictMode>,
+  document.getElementById('root4')
+);
+
+// For AppFCUpdatingFromNested
+render(
+  <StrictMode>
+    <AppFCUpdatingFromNested />
+  </StrictMode>,
+  document.getElementById('root3')
+);
+
+// For AppFC
+render(
+  <StrictMode>
+    <AppContext.Provider value={{ user: 'logo512.png', size: 50 }} >
+      <AppFC />
+    </AppContext.Provider>
+  </StrictMode>,
+  document.getElementById('root2')
+);
+
+render(
   <StrictMode>
     <AppContext.Provider value={{ user: 'logo512.png', size: 50 }} >
       <App />
     </AppContext.Provider>
   </StrictMode>,
-  document.getElementById('root')
+  document.getElementById('root1')
 );
 
 // If you want to start measuring performance in your app, pass a function
