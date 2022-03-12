@@ -1,6 +1,6 @@
 import { Component } from 'react'
 
-import './App.css'
+import './0_App.css'
 
 class Link extends Component {
     render() {

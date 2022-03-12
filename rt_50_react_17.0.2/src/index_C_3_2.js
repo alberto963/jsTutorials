@@ -1,15 +1,15 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render, StrictMode } from 'react-dom';
 import './index.css';
-import App from './C_AdvancedGuide_3_Context/2_BeforeYouUseContext/App';
-import AppFC from './C_AdvancedGuide_3_Context/2_BeforeYouUseContext/AppFC';
-import AppIOC from './C_AdvancedGuide_3_Context/2_BeforeYouUseContext/AppIOC';
+import AppCC from './C_AdvancedGuide_3_Context/2_BeforeYouUseContext/1_AppCC';
+import AppFC from './C_AdvancedGuide_3_Context/2_BeforeYouUseContext/2_AppFC';
+import AppIOC from './C_AdvancedGuide_3_Context/2_BeforeYouUseContext/3_AppIOC';
 import reportWebVitals from './reportWebVitals';
 
-ReactDOM.render(
-  <React.StrictMode>
+render(
+  <StrictMode>
     <AppIOC user='logo512.png' size={75} />
-  </React.StrictMode>,
+  </StrictMode>,
   document.getElementById('root')
 );
 
