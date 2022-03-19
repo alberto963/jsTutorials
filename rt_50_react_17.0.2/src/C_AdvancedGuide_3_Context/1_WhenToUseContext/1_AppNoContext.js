@@ -17,7 +17,7 @@ class ThemedButton extends Component {
 }
 
 // NOTE: functional component
-const Toolbar = (props) => <ThemedButton type={'button'} disabled={true} theme={props.theme} />
+const Toolbar = (props) => <ThemedButton type={'button'} disabled={false} theme={props.theme} />
 
 // NOTE: class component
 class App extends Component {

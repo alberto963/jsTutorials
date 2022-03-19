@@ -5,6 +5,17 @@ import AppNoContext from './C_AdvancedGuide_3_Context/1_WhenToUseContext/1_AppNo
 import AppWithContext from './C_AdvancedGuide_3_Context/1_WhenToUseContext/2_AppWithContext';
 
 import reportWebVitals from './reportWebVitals';
+import Story from './C_AdvancedGuide_3_Context/1_WhenToUseContext/0_Story';
+
+render(
+  <StrictMode>
+    <Story>
+      <AppNoContext />
+      <AppWithContext />
+    </Story>
+  </StrictMode>,
+  document.getElementById('root0')
+);
 
 render(
   <StrictMode>

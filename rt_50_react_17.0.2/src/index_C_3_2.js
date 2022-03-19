@@ -10,7 +10,7 @@ render(
   <StrictMode>
     <AppIOC user='logo512.png' size={75} />
   </StrictMode>,
-  document.getElementById('root')
+  document.getElementById('root0')
 );
 
 // If you want to start measuring performance in your app, pass a function
