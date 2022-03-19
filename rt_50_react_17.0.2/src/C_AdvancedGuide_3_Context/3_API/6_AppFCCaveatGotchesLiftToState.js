@@ -34,7 +34,6 @@ const NavigatorBar = memo(props => {
         </AppContext.Consumer>)
 })
 
-
 const PageLayoutContextLiftToState = props => {
     console.info('PageLayoutContextLiftToState rendered...')
 

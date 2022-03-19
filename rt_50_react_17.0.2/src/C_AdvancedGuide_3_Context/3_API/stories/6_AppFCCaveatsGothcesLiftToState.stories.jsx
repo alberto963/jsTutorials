@@ -16,4 +16,4 @@ export default {
 const Template = (args) => <Component {...args} />;
 
 export const App_C_3_3_6 = Template.bind({});
-App_C_3_3_6.storyName = '3.3 API - Function Component Caveats Gotches Lift To State';
+App_C_3_3_6.storyName = '3.3 API - 4. Function Component Caveats Gotches Lift To State';

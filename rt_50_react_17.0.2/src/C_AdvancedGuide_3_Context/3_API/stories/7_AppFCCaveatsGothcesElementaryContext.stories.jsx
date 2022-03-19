@@ -16,4 +16,4 @@ export default {
 const Template = (args) => <Component {...args} />;
 
 export const App_C_3_3_7 = Template.bind({});
-App_C_3_3_7.storyName = '3.3 API - Function Component Caveats Gotches Elementatry Context';
+App_C_3_3_7.storyName = '3.3 API - 5. Function Component Caveats Gotches Elementatry Context';
