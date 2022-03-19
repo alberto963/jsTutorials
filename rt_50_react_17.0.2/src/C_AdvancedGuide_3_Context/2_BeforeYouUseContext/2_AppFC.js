@@ -1,3 +1,4 @@
+import 'utils/App.css'
 import './0_App.css'
 
 const Link = props => 

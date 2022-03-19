@@ -1,3 +1,4 @@
+import 'utils/App.css'
 import './0_App.css'
 import { AppContext } from './0_AppContext'
 

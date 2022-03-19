@@ -1,4 +1,5 @@
 import { useState, useEffect, memo } from 'react'
+import 'utils/App.css'
 import './0_App.css'
 import { AppUserContext, AppSizeContext } from './0_AppContext'
 

@@ -1,4 +1,4 @@
-import './0_App.css'
+import './Story.css'
 
 const Story = (props) => <div className='Story' >{props.children}</div>
 

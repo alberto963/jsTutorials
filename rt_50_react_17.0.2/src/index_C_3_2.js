@@ -1,10 +1,24 @@
 import React from 'react';
 import { render, StrictMode } from 'react-dom';
-import './index.css';
-import AppCC from './C_AdvancedGuide_3_Context/2_BeforeYouUseContext/1_AppCC';
-import AppFC from './C_AdvancedGuide_3_Context/2_BeforeYouUseContext/2_AppFC';
-import AppIOC from './C_AdvancedGuide_3_Context/2_BeforeYouUseContext/3_AppIOC';
-import reportWebVitals from './reportWebVitals';
+import 'index.css';
+import AppCC from 'C_AdvancedGuide_3_Context/2_BeforeYouUseContext/1_AppCC';
+import AppFC from 'C_AdvancedGuide_3_Context/2_BeforeYouUseContext/2_AppFC';
+import AppIOC from 'C_AdvancedGuide_3_Context/2_BeforeYouUseContext/3_AppIOC';
+import reportWebVitals from 'reportWebVitals';
+
+render(
+  <StrictMode>
+    <AppCC user='logo512.png' size={75} />
+  </StrictMode>,
+  document.getElementById('root2')
+);
+
+render(
+  <StrictMode>
+    <AppFC user='logo512.png' size={75} />
+  </StrictMode>,
+  document.getElementById('root1')
+);
 
 render(
   <StrictMode>

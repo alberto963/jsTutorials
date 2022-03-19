@@ -1,11 +1,11 @@
 import React, { StrictMode } from 'react';
 import { render } from 'react-dom';
-import './index.css';
-import AppNoContext from './C_AdvancedGuide_3_Context/1_WhenToUseContext/1_AppNoContext';
-import AppWithContext from './C_AdvancedGuide_3_Context/1_WhenToUseContext/2_AppWithContext';
+import 'index.css';
+import AppNoContext from 'C_AdvancedGuide_3_Context/1_WhenToUseContext/1_AppNoContext';
+import AppWithContext from 'C_AdvancedGuide_3_Context/1_WhenToUseContext/2_AppWithContext';
 
-import reportWebVitals from './reportWebVitals';
-import Story from './C_AdvancedGuide_3_Context/1_WhenToUseContext/0_Story';
+import reportWebVitals from 'reportWebVitals';
+import Story from 'utils/Story';
 
 render(
   <StrictMode>

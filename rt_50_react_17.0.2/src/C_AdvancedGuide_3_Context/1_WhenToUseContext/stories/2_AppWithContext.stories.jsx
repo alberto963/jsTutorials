@@ -1,0 +1,19 @@
+import { StrictMode } from 'react';
+
+import App from '../2_AppWithContext';
+
+const Component = (props) => (
+  <StrictMode>
+    <App {...props} />
+  </StrictMode>
+)
+
+export default {
+  title: 'AdvancedGuide/3 Context',
+  component: Component,
+};
+
+const Template = (args) => <Component {...args} />;
+
+export const App_C_3_1_2 = Template.bind({});
+App_C_3_1_2.storyName = '1.2 When To Use Context - App With Context';

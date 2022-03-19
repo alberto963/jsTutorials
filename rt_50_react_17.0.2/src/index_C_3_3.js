@@ -1,14 +1,14 @@
 import React, { StrictMode } from 'react';
 import { render } from 'react-dom';
-import './index.css';
-import { AppContext, AppUserContext, AppSizeContext } from './C_AdvancedGuide_3_Context/3_API/0_AppContext';
-import App from './C_AdvancedGuide_3_Context/3_API/1_App';
-import AppFC from './C_AdvancedGuide_3_Context/3_API/2_AppFC';
-import AppFCUpdatingFromNested from './C_AdvancedGuide_3_Context/3_API/3_AppFCUpdatingFromNested';
-import AppFCMultipleContext from './C_AdvancedGuide_3_Context/3_API/4_AppFCMultipleContext';
-import AppFCCaveatsGotches from './C_AdvancedGuide_3_Context/3_API/5_AppFCCaveatsGotches';
-import AppFCCaveatGotchesElementaryContext from './C_AdvancedGuide_3_Context/3_API/6_AppFCCaveatGotchesElementaryContext';
-import reportWebVitals from './reportWebVitals';
+import 'index.css';
+import { AppContext, AppUserContext, AppSizeContext } from 'C_AdvancedGuide_3_Context/3_API/0_AppContext';
+import App from 'C_AdvancedGuide_3_Context/3_API/1_AppCC';
+import AppFC from 'C_AdvancedGuide_3_Context/3_API/2_AppFC';
+import AppFCUpdatingFromNested from 'C_AdvancedGuide_3_Context/3_API/3_AppFCUpdatingFromNested';
+import AppFCMultipleContext from 'C_AdvancedGuide_3_Context/3_API/4_AppFCMultipleContext';
+import AppFCCaveatsGotches from 'C_AdvancedGuide_3_Context/3_API/5_AppFCCaveatsGotches';
+import AppFCCaveatGotchesElementaryContext from 'C_AdvancedGuide_3_Context/3_API/6_AppFCCaveatGotchesElementaryContext';
+import reportWebVitals from 'reportWebVitals';
 
 /* FROM REACT DOC:
     The defaultValue argument in createContext is only used when a component does not have a matching Provider above it in the tree.
