@@ -2,12 +2,12 @@ import React, { StrictMode } from 'react';
 import { render } from 'react-dom';
 import 'index.css';
 import { AppContext, AppUserContext, AppSizeContext } from 'C_AdvancedGuide_3_Context/3_API/0_AppContext';
-import App from 'C_AdvancedGuide_3_Context/3_API/1_AppCC';
+import AppCC from 'C_AdvancedGuide_3_Context/3_API/1_AppCC';
 import AppFC from 'C_AdvancedGuide_3_Context/3_API/2_AppFC';
 import AppFCUpdatingFromNested from 'C_AdvancedGuide_3_Context/3_API/3_AppFCUpdatingFromNested';
 import AppFCMultipleContext from 'C_AdvancedGuide_3_Context/3_API/4_AppFCMultipleContext';
-import AppFCCaveatsGotches from 'C_AdvancedGuide_3_Context/3_API/5_AppFCCaveatsGotches';
-import AppFCCaveatGotchesElementaryContext from 'C_AdvancedGuide_3_Context/3_API/6_AppFCCaveatGotchesElementaryContext';
+import AppFCCaveatsGotches from 'C_AdvancedGuide_3_Context/3_API/5_AppFCCaveatsGotchesUnintentionalRenders';
+import AppFCCaveatGotchesElementaryContext from 'C_AdvancedGuide_3_Context/3_API/7_AppFCCaveatGotchesElementaryContext';
 import reportWebVitals from 'reportWebVitals';
 
 /* FROM REACT DOC:
@@ -75,7 +75,7 @@ render(
 render(
   <StrictMode>
     <AppContext.Provider value={{ user: 'logo512.png', size: 50 }} >
-      <App />
+      <AppCC />
     </AppContext.Provider>
   </StrictMode>,
   document.getElementById('root1')
@@ -90,6 +90,6 @@ reportWebVitals();
   The following one will result in default values to be used (for testing purposes, for instance):
 
   <StrictMode>
-    <App />
+    <AppCC />
   </StrictMode>,
 */

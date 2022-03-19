@@ -1,10 +1,10 @@
 import { StrictMode } from 'react';
 
-import App from 'C_AdvancedGuide_3_Context/3_API/3_AppFCUpdatingFromNested';
+import App from 'C_AdvancedGuide_3_Context/3_API/1_AppCC';
 
 const Component = (props) => (
   <StrictMode>
-      <App {...props} />
+    <App {...props} />
   </StrictMode>
 )
 
@@ -15,5 +15,5 @@ export default {
 
 const Template = (args) => <Component {...args} />;
 
-export const App_C_3_3_3 = Template.bind({});
-App_C_3_3_3.storyName = '3.3 API - Context With App Updating From Nested';
+export const App_C_3_3_1_1 = Template.bind({});
+App_C_3_3_1_1.storyName = '3.1.1 API - Default Context For Testing Purposes';
