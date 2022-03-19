@@ -16,4 +16,4 @@ export default {
 const Template = (args) => <Component {...args} />;
 
 export const App_C_3_3_3 = Template.bind({});
-App_C_3_3_3.storyName = '3.3 API - Function Component Updating From Nested';
+App_C_3_3_3.storyName = '3.3 API - 1. Function Component Updating From Nested';

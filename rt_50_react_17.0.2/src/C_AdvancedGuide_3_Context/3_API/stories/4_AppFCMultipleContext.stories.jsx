@@ -21,4 +21,4 @@ export default {
 const Template = (args) => <Component {...args} />;
 
 export const App_C_3_3_4 = Template.bind({});
-App_C_3_3_4.storyName = '3.3 API - Function Component Multiple Context';
+App_C_3_3_4.storyName = '3.3 API - 2. Function Component Multiple Context';
