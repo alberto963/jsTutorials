@@ -35,7 +35,7 @@ const FancyButton3 = forwardRefs(function FancyButton(props, ref) {
 })
 
 // Now you can get a ref to the inner button
-export const MyButton = (props) => {
+const MyButton = (props) => {
     const ref = createRef()
     useEffect(() => {
         console.info(ref.current)
@@ -43,3 +43,5 @@ export const MyButton = (props) => {
 
     return <FancyButton0 ref={ref}>Click me!</FancyButton0>
 }
+
+export default MyButton 

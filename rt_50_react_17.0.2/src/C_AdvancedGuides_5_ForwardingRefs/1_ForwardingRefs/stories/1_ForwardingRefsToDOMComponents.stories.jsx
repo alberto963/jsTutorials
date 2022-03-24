@@ -1,6 +1,6 @@
 import { StrictMode } from 'react'
 
-import App from '../1_RefForwarding'
+import App from '../1_ForwardingRefsToDOMComponents'
 
 const Component = (props) => (
   <StrictMode>
@@ -16,4 +16,4 @@ export default {
 const Template = (args) => <Component {...args} />;
 
 export const App_C_5_1_1 = Template.bind({});
-App_C_5_1_1.storyName = '1.1 Forwarding Refs To DOM Components - Ref Forwarding'
+App_C_5_1_1.storyName = '1.1 Forwarding Refs - Forwarding Refs To DOM Components'
