@@ -5,7 +5,7 @@ import { AppContext } from './0_AppContext'
 const Link = props =>
     <div className='App'>
         {props.children}
-        <a href={props.href}>The Anchor element 2</a>
+        <a href={props.href}>The Anchor element 8</a>
     </div>
 
 const Avatar = props =>

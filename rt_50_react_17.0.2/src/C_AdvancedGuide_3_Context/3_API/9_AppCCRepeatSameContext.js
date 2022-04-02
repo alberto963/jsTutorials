@@ -9,7 +9,7 @@ class Link extends Component {
         return (
             <div className='App'>
                 {this.props.children}
-                <a href={this.props.href}>The Anchor element 1</a>
+                <a href={this.props.href}>The Anchor element 9</a>
             </div>)
     }
 }
@@ -28,6 +28,8 @@ class NavigatorBar extends Component {
         return (
             <Link href={this.context.user}>
                 <Avatar />
+                <button onClick={() => this.context.updateSize(+5)}>Click to increase icon size</button>
+                <button onClick={() => this.context.updateSize(-5)}>Click to decrease icon size</button>
             </Link>)
     }
 }
@@ -44,9 +46,11 @@ class Page extends Component {
         super(props);
         this.state = {
             user: 'logo512.png',
-            size: 50
+            size: 100,
+            updateSize: (v) => this.setState(state => ({ size: state.size + v }))
         };
     }
+
     render() {
         return (
             <AppContext.Provider value={this.state} >
