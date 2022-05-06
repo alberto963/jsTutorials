@@ -3,3 +3,8 @@ const { bar: {z: y}, baz } = foo;
 console.log(y); // expected output: Object { t: 9 }
 //console.log(bar);
 console.log(baz); // expected output: 12
+
+const foo2 = { bar: {z: {t: 9}, w: 7 }, baz: 12 }
+const { bar: w } = foo; 
+console.log(w); // expected output: {z: {t: 9}, w: 7 }
+
