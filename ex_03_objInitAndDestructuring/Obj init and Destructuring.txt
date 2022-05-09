@@ -8,3 +8,12 @@ const foo2 = { bar: {z: {t: 9}, w: 7 }, baz: 12 }
 const { bar: w } = foo; 
 console.log(w); // expected output: {z: {t: 9}, w: 7 }
 
+const foo2 = { bar: () => {}, baz: 12 }
+const { bar: w } = foo; 
+console.log(w); // expected output: () => {}
+
+const foo3 = { bar: 1, baz: 2 };
+const { bar, ...other } = foo3;
+console.log(other); // expected output: baz: 2
+
+
