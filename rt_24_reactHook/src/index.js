@@ -371,6 +371,47 @@ const TypeExp2 = () => {
   </div>
 }
 
+const MyParent2 = () => {
+  const [count, setCount] = useState(0)
+  const [activate, setActivate] = useState(0)
+  
+  console.log(`${dt(t0)} MyParent2 called`)
+
+  return (
+	  <div>
+      <button onClick={() => setCount(count + 1) }>
+          Click me (MyParent2)
+      </button>
+      <button onClick={() => setActivate(activate + 1) }>
+          Activate (MyParent2)
+      </button>
+      <br />
+      {`${dt(t0)} count=${count}`}
+      <br />      
+      {`${dt(t0)} activate=${activate}`}   
+      {((activate > 3 && activate < 6) || (activate > 10 && activate < 13)) && <MyWithUseState initial={count} />}
+	  </div>
+	  )
+}
+
+const MyWithUseState = ({initial}) => {
+  const [count, setCount] = useState(initial)
+  
+  console.log(`${dt(t0)} MyWithUseState with initial=${initial} called`)
+
+  return (
+	  <div>
+      <button onClick={() => setCount(count + 1) }>
+          Click me (MyWithUseState)
+      </button>
+      <br />
+      {`${dt(t0)} initial=${initial}`}   
+      <br />   
+      {`${dt(t0)} count=${count}`}   
+	  </div>
+	  )
+}
+
 render(
   <div>
     <Example />
@@ -385,6 +426,7 @@ render(
     <MyBase7 />
     <MyParent term={10} /> {/* To see effects, use 1000000 as term value */}
     <TypeExp2 />
+    <MyParent2 />
   </div>,
   document.getElementById('root')
 )
