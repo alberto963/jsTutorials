@@ -1,0 +1,60 @@
+Component should have a like button
+Output (stderr):
+AssertionError [ERR_ASSERTION]: Like button with 'like-button' class is not present
+    at Context.it (data/test.js:41:5)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:189:7)
+WRONG ANSWER
+
+Component should have the initial likes counter
+Output (stderr):
+AssertionError [ERR_ASSERTION]: The likes counter element is not present
+    at Context.it (data/test.js:46:5)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:189:7)
+WRONG ANSWER
+
+Component should have a proper format
+Output (stderr):
+AssertionError [ERR_ASSERTION]: Like button is not present
+    at PageObject.checkBasicUI (data/PageObject.js:50:5)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:189:7)
+WRONG ANSWER
+
+Component should increment counter when like is clicked
+Output (stderr):
+AssertionError [ERR_ASSERTION]: Like button is not present
+    at PageObject.checkBasicUI (data/PageObject.js:50:5)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:189:7)
+WRONG ANSWER
+
+Component should decrement counter when like is double-clicked
+Output (stderr):
+AssertionError [ERR_ASSERTION]: Like button is not present
+    at PageObject.checkBasicUI (data/PageObject.js:50:5)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:189:7)
+WRONG ANSWER
+
+Component should properly toggle 3 times
+Output (stderr):
+AssertionError [ERR_ASSERTION]: Like button is not present
+    at PageObject.checkBasicUI (data/PageObject.js:50:5)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:189:7)
+WRONG ANSWER
+
+Component should have proper classes
+Output (stderr):
+AssertionError [ERR_ASSERTION]: Like button is not present
+    at PageObject.checkBasicUI (data/PageObject.js:50:5)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:189:7)
+WRONG ANSWER
+
+Detected some errors.
+All changes saved
+
+
