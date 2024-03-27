@@ -1,0 +1,6 @@
+<button class='like-button' [class.liked]='isLiked()' (click)='incrementLikes()'>
+    {{'Like |'}}
+    <span class='likes-counter'>
+        {{likesCount == 101 ? '101' : '100'}}
+   </span>
+</button>

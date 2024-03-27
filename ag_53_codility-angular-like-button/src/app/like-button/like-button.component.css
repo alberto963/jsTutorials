@@ -1,0 +1,13 @@
+.likes-counter {
+    font-size: 1rem;
+    padding: 5px 10px;
+}
+
+.like-button {
+    color: #585858;
+}
+
+.liked {
+    font-weight: bold;
+    color: #1565c0;
+}
